@@ -2,6 +2,8 @@
 
 Sheil Sarda
 
+$\\frac{2}{2}$
+
 Taught by Prof. Kostas Daniilidis
 
 ## General Forms of 3D Rotations
