@@ -18,3 +18,6 @@ Taught by Prof. Kostas Daniilidis
 
 <img src="imgs/x-axis_rotation.png" width=500>
 
+### [Other 3D Transformations](https://web.iitd.ac.in/~hegde/cad/lecture/L6_3dtrans.pdf)
+
+## [Definitions of Image Projection](http://www.close-range.com/docs/Image_Projection-CSC420--Jepson2011.pdf)
