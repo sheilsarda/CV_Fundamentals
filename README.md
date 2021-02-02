@@ -12,9 +12,9 @@ Taught by Prof. Kostas Daniilidis
 
 ### Rotation about y-axis
 
-<img src="" width=500>
+<img src="imgs/y-axis_rotation.png" width=500>
 
 ### Rotation about x-axis
 
-<img src="" width=500>
+<img src="imgs/x-axis_rotation.png" width=500>
 
