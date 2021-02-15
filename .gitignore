@@ -3,3 +3,10 @@
 *.hex
 *.elf
 *.pyc
+
+*.aux
+*.log
+*.ps
+*.out
+*.toc
+*.synctex.gz

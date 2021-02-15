@@ -1,0 +1,319 @@
+\documentclass[12pt, oneside]{article} 
+% \documentclass{article} 
+\usepackage{amsmath, amsthm, amssymb, calrsfs, wasysym, verbatim, bbm, color, graphics, geometry}
+\usepackage{fancyvrb} % for "\Verb" macro
+\usepackage[toc,page]{appendix}
+\usepackage[pdftex]{graphicx}
+\usepackage{float}
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+}
+ 
+\urlstyle{same}
+
+\geometry{tmargin=1.25in, bmargin=1.25in, lmargin=1.00in, rmargin = 1.00in}  
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Cdot}{\boldsymbol{\cdot}}
+
+\usepackage{listings}
+\usepackage{color} %red, green, blue, yellow, cyan, magenta, black, white
+\definecolor{mygreen}{RGB}{28,172,0} % color values Red, Green, Blue
+\definecolor{mylilas}{RGB}{170,55,241}
+
+\title{CIS580 PSet 2}
+\author{Sheil Sarda}
+\date{02.14.2021}
+
+\begin{document}
+\lstset{language=Matlab,%
+    %basicstyle=\color{red},
+    breaklines=true,%
+    morekeywords={matlab2tikz},
+    keywordstyle=\color{blue},%
+    morekeywords=[2]{1}, keywordstyle=[2]{\color{black}},
+    identifierstyle=\color{black},%
+    stringstyle=\color{mylilas},
+    commentstyle=\color{mygreen},%
+    showstringspaces=false,%without this there will be a symbol in the places where there is a space
+    numbers=left,%
+    numberstyle={\tiny \color{black}},% size of the numbers
+    numbersep=9pt, % this defines how far the numbers are from the text
+    emph=[1]{for,end,break},emphstyle=[1]\color{red}, %some words to emphasise
+    %emph=[2]{word1,word2}, emphstyle=[2]{style},    
+}
+
+\begin{titlepage}
+    \begin{flushleft}
+        \vspace*{1cm}
+        \Huge
+        \textbf{CIS580 Problem Set 2\\ }
+        \vspace*{0.5cm}
+        \normalsize
+        
+        \tableofcontents
+    \end{flushleft}
+\end{titlepage}
+
+\section{Line that passes through the points}
+
+\subsection{$[0, a, 0], [0, 0, a]$}
+  \begin{align*}
+    l &= \begin{bmatrix}
+           0 \\
+           a \\
+           0
+         \end{bmatrix} \times 
+          \begin{bmatrix}
+                    0 \\
+                    0 \\
+                    a
+                  \end{bmatrix}  
+= 
+ \begin{bmatrix}
+                    a^2 - 0 \\
+                    0 - 0 \\
+                    0 - 0
+                  \end{bmatrix}                   
+= 
+ \begin{bmatrix}
+                    a^2  \\
+                    0  \\
+                    0 
+                  \end{bmatrix}                                                   
+  \end{align*}
+
+\subsection{$[a, a, 1], [a, a, 2]$}
+  \begin{align*}
+    l &= \begin{bmatrix}
+           a \\
+           a \\
+           1
+         \end{bmatrix} \times 
+          \begin{bmatrix}
+                    a \\
+                    a \\
+                    2
+                  \end{bmatrix}  
+= 
+ \begin{bmatrix}
+                    2a - a \\
+                    a - 2a \\
+                    a^2 - a^2
+                  \end{bmatrix}                   
+= 
+ \begin{bmatrix}
+                    a  \\
+                    -a  \\
+                    0 
+                  \end{bmatrix}                                                   
+  \end{align*}
+
+\subsection{$[a, b, 0], [c, d, 0]$}
+  \begin{align*}
+    l &= \begin{bmatrix}
+           a \\
+           b \\
+           0
+         \end{bmatrix} \times 
+          \begin{bmatrix}
+                    c \\
+                    d \\
+                    0
+                  \end{bmatrix}  
+= 
+ \begin{bmatrix}
+                    0 -0 \\
+                    0-0 \\
+                    ad - bc
+                  \end{bmatrix}                   
+= 
+ \begin{bmatrix}
+                    0  \\
+                    0  \\
+                    ad - bc 
+                  \end{bmatrix}                                                   
+  \end{align*}
+  
+\section{Point of Intersection $\in \mathbb{P}^2$}  
+\subsection{$x-y + w = 0, w = 0$}
+  \begin{align*}
+    P &= \begin{bmatrix}
+           1 \\
+           -1 \\
+           1
+         \end{bmatrix} \times 
+          \begin{bmatrix}
+                    0 \\
+                    0 \\
+                    1
+                  \end{bmatrix}  
+= 
+ \begin{bmatrix}
+                    -1 - 0 \\
+                    0-1 \\
+                    0 - 0
+                  \end{bmatrix}                   
+= 
+ \begin{bmatrix}
+                    -1  \\
+                    -1 \\
+                    0 
+                  \end{bmatrix}                                                   
+  \end{align*}
+\subsection{$3x-w=0 , 4y - w = 0$}
+  \begin{align*}
+    P &= \begin{bmatrix}
+           3 \\
+           0 \\
+           -1
+         \end{bmatrix} \times 
+          \begin{bmatrix}
+                    0 \\
+                    4 \\
+                    -1
+                  \end{bmatrix}  
+= 
+ \begin{bmatrix}
+                    0+4 \\
+                    0+3 \\
+                    12-0
+                  \end{bmatrix}                   
+= 
+ \begin{bmatrix}
+                    4 \\
+                    3 \\
+                    12 
+                  \end{bmatrix}                                                   
+  \end{align*}
+\subsection{$x-y+5w=0, x-y+2w$}
+  \begin{align*}
+    P &= \begin{bmatrix}
+           1 \\
+           -1 \\
+           5
+         \end{bmatrix} \times 
+          \begin{bmatrix}
+                    1 \\
+                    -1 \\
+                    2
+                  \end{bmatrix}  
+= 
+ \begin{bmatrix}
+                    -2+5 \\
+                    5-2\\
+                    -1+1
+                  \end{bmatrix}                   
+= 
+ \begin{bmatrix}
+                    1 \\
+                    1 \\
+                    0 
+                  \end{bmatrix}                                                   
+  \end{align*}
+  
+\section{Find $\lambda$ such that three lines intersect}  
+
+Write the lines in a matrix system of equations:
+
+\begin{align*}
+\begin{bmatrix}
+0 		& 0 		& 1\\
+1 		& \lambda 	& \lambda\\
+\lambda & 1 		& \lambda
+\end{bmatrix} 
+\begin{bmatrix}
+x\\
+y\\
+w
+\end{bmatrix} = 
+\begin{bmatrix}
+0\\
+0\\
+0
+\end{bmatrix}
+\end{align*}
+
+Given that $w = 0$, we reduce the system of equations to the following:      
+\begin{align*}
+\begin{bmatrix}
+1 		& \lambda 		\\
+\lambda & 1 		
+\end{bmatrix} 
+\begin{bmatrix}
+x\\
+y
+\end{bmatrix} = 
+\begin{bmatrix}
+0\\
+0
+\end{bmatrix}
+\end{align*}
+
+Set the determinant equal to zero:
+\begin{align*}
+1-\lambda &= 0 \\
+(1-\lambda)(1 + \lambda ) &= 0 \\
+\lambda &= -1, 1
+\end{align*}
+
+We choose $\lambda = -1$ since in the other case, we do not have three distinct lines. Using this, we compute the point of intersection as follows:
+
+\begin{align*}
+\begin{bmatrix}
+0 \\
+0 \\ 
+0
+\end{bmatrix} \times
+\begin{bmatrix}
+1 \\
+-1 \\ 
+-1
+\end{bmatrix} = 
+\begin{bmatrix}
+0 +1\\
+1+0\\ 
+0+0
+\end{bmatrix} =
+\begin{bmatrix}
+1\\
+1\\ 
+0
+\end{bmatrix} 
+\end{align*}
+
+\section{Find projective transformation $A$}  
+
+We wish to preserve:
+\begin{align*}
+P_1 &= (1, 0, 0)\\
+P_2 &= (0, 1, 0)\\
+O &= (0, 0, 1)
+\end{align*}
+
+We wish to map: $P_3 = (1, 1, 1) \to {P_3}' = (3, 2, 1)$
+
+\begin{align*}
+({P_1}', {P_2}', {P_3}', O) &= M ({P_1}, {P_2}, {P_3}, O) \\ \\
+\begin{bmatrix}
+\lambda_1 	& 0 		& 3\lambda_3 	& 0 \\
+0 			& \lambda_2 & 2\lambda_3 	& 0 \\
+0		 	& 0 		& \lambda_3 	& \lambda_4 
+\end{bmatrix}  &=
+M \begin{bmatrix}
+1 			& 0 	& 1 	& 0 \\
+0 			& 1 	& 1 	& 0 \\
+0		 	& 0 	& 1 	& 1 
+\end{bmatrix} 
+\end{align*}
+
+\end{document}
+
