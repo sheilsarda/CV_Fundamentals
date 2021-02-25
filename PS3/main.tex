@@ -121,20 +121,20 @@ Known quantities:
 \begin{tabular}{|c|c|l|}
 \hline
 \multicolumn{1}{|l|}{\textbf{Units}} & \textbf{Segment} & \textbf{Value}                \\ \hline
-Image & $AD$      & $\sqrt{1092^2 + 16^2} = 1092$ px     \\ \hline
-Image & $BC$      & $\sqrt{364^2 + 6^2} = 364$ px       \\ \hline
-Image & $AB$      & $\sqrt{730^2 + 384^2} = 825$ px     \\ \hline
-Image & $CD$      & $\sqrt{344^2 + 740^2} = 816$ px     \\ \hline
-Image & $M_1 M_2$ & $\sqrt{540^2 + 14^2} = 540$ px     \\ \hline
-Image & $A'D'$      & $\sqrt{1260^2 + 6^2} = 1260$ px     \\ \hline
-Image & $B'C'$      & $\sqrt{600^2 + 0^2} = 600$ px       \\ \hline
-Image & $A'B'$      & $\sqrt{324^2 + 754^2} = 821$ px     \\ \hline
-Image & $C'D'$      & $\sqrt{336^2 + 748^2} = 820$ px     \\ \hline
-Image & $M_1' M_2'$ & $\sqrt{804^2 + 0^2} = 804$ px     \\ \hline
-World & $AD, A'D'$      & 27 ft     \\ \hline
-World & $BC, B'C$       & 27 ft     \\ \hline
-World & $AB, A'B'$      & 78 ft     \\ \hline
-World & $CD, C'D'$      & 78 ft     \\ \hline
+Image & $AD$      & $\sqrt{1092^2 + 16^2} = 1092$ pixels     \\ \hline
+Image & $BC$      & $\sqrt{364^2 + 6^2} = 364$ pixels       \\ \hline
+Image & $AB$      & $\sqrt{730^2 + 384^2} = 825$ pixels     \\ \hline
+Image & $CD$      & $\sqrt{344^2 + 740^2} = 816$ pixels     \\ \hline
+Image & $M_1 M_2$ & $\sqrt{540^2 + 14^2} = 540$ pixels     \\ \hline
+Image & $A'D'$      & $\sqrt{1260^2 + 6^2} = 1260$ pixels     \\ \hline
+Image & $B'C'$      & $\sqrt{600^2 + 0^2} = 600$ pixels       \\ \hline
+Image & $A'B'$      & $\sqrt{324^2 + 754^2} = 821$ pixels     \\ \hline
+Image & $C'D'$      & $\sqrt{336^2 + 748^2} = 820$ pixels     \\ \hline
+Image & $M_1' M_2'$ & $\sqrt{804^2 + 0^2} = 804$ pixels     \\ \hline
+World & $AD, A'D'$      & 27 feet     \\ \hline
+World & $BC, B'C$       & 27 feet     \\ \hline
+World & $AB, A'B'$      & 78 feet     \\ \hline
+World & $CD, C'D'$      & 78 feet     \\ \hline
 \end{tabular}
 \end{table}
 
@@ -161,6 +161,70 @@ vanishing points as:
 \begin{align*}
     {V_x\to 909.093,V_y\to 386.472} \\
     {V_x\to 586.907,V_y\to 1061.53} 
+\end{align*}
+
+Double-checking the answer using cross-products:
+
+\textbf{Image 1 Vertical Vanishing Point}
+
+\begin{align*}
+L_1 &=    \begin{bmatrix}
+            748 \\
+            724 \\
+            1
+        \end{bmatrix} \times 
+        \begin{bmatrix}
+            1092 \\
+            -16 \\
+            1
+        \end{bmatrix}  = 
+        \begin{bmatrix}
+            724 + 16 \\
+            1092 - 748 \\
+            -16*748 - 724*1092
+        \end{bmatrix} = 
+        \begin{bmatrix}
+            740  \\
+            344 \\
+            -802576 
+        \end{bmatrix}                                                   
+\end{align*}
+
+\begin{align*}
+L_2 &=    \begin{bmatrix}
+            384 \\
+            730 \\
+            1
+        \end{bmatrix} \times 
+        \begin{bmatrix}
+            0 \\
+            0 \\
+            1
+        \end{bmatrix}  = 
+        \begin{bmatrix}
+            730  \\
+            -384 \\
+            0 
+        \end{bmatrix}                                                   
+\end{align*}
+
+Now, computing $L_1 \times L_2$ to obtain the vanishing point:
+\begin{align*}
+    \begin{bmatrix}
+        740  \\
+        344 \\
+        -802576 
+    \end{bmatrix} \times 
+    \begin{bmatrix}
+        730  \\
+        -384 \\
+        0 
+    \end{bmatrix}   = 
+\begin{bmatrix}
+    576  \\
+    1095 \\
+    1 
+\end{bmatrix}
 \end{align*}
 
 \textbf{Vanishing Point for Image 2}
@@ -190,6 +254,126 @@ vanishing points as:
 \end{align*}
 
 \subsection{Find vanishing points for court baselines}
+
+\subsubsection*{Image 1 Horizontal Vanishing Point}
+
+\begin{align*}
+L_1 &=    \begin{bmatrix}
+            384 \\
+            730 \\
+            1
+        \end{bmatrix} \times 
+        \begin{bmatrix}
+            748 \\
+            724 \\
+            1
+        \end{bmatrix}  = 
+        \begin{bmatrix}
+            6  \\
+            364 \\
+            -268024 
+        \end{bmatrix}                                                   
+\end{align*}
+
+\begin{align*}
+L_2 &=    \begin{bmatrix}
+            0 \\
+            0 \\
+            1
+        \end{bmatrix} \times 
+        \begin{bmatrix}
+            1092 \\
+            -16 \\
+            1
+        \end{bmatrix}  = 
+        \begin{bmatrix}
+            16  \\
+            1092 \\
+            0 
+        \end{bmatrix}                                                   
+\end{align*}
+
+Now, computing $L_1 \times L_2$ to obtain the vanishing point:
+\begin{align*}
+    \begin{bmatrix}
+        6  \\
+        364 \\
+        -268024 
+    \end{bmatrix}     \times 
+    \begin{bmatrix}
+        16  \\
+        1092 \\
+        0 
+    \end{bmatrix}    = 
+    \begin{bmatrix}
+        402036  \\
+        -5891 \\
+        1 
+    \end{bmatrix}
+\end{align*}
+
+
+\subsubsection*{Image 2 Horizontal Vanishing Point}
+
+\begin{align*}
+    L_1 &=    \begin{bmatrix}
+                324 \\
+                754 \\
+                1
+            \end{bmatrix} \times 
+            \begin{bmatrix}
+                924 \\
+                754 \\
+                1
+            \end{bmatrix}  = 
+            \begin{bmatrix}
+                0  \\
+                600 \\
+                -452400 
+            \end{bmatrix}                                                   
+    \end{align*}
+    
+    \begin{align*}
+    L_2 &=    \begin{bmatrix}
+                0 \\
+                0 \\
+                1
+            \end{bmatrix} \times 
+            \begin{bmatrix}
+                1260 \\
+                6 \\
+                1
+            \end{bmatrix}  = 
+            \begin{bmatrix}
+                -6  \\
+                1260 \\
+                0 
+            \end{bmatrix}                                                   
+    \end{align*}
+    
+    Now, computing $L_1 \times L_2$ to obtain the vanishing point:
+    \begin{align*}
+        \begin{bmatrix}
+            0  \\
+            600 \\
+            -452400 
+        \end{bmatrix}    \times 
+        \begin{bmatrix}
+            -6  \\
+            1260 \\
+            0 
+        \end{bmatrix}    = 
+        \begin{bmatrix}
+            158340  \\
+            754 \\
+            1 
+        \end{bmatrix}
+    \end{align*}
+    
+\subsubsection*{Finding the homography that maps tennis court to 
+                image plane}
+
+\subsubsection*{Image 1} 
 
 \begin{align*}
   W' \sim P
@@ -236,8 +420,8 @@ vanishing points as:
   \end{bmatrix} \implies 
   \delta Z' = P
    \begin{bmatrix}
-  1   \\
-  1   \\
+  27   \\
+  78   \\
   1  
   \end{bmatrix} 
   \end{align*}
