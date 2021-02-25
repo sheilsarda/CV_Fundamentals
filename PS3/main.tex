@@ -66,10 +66,13 @@
 
 \section{Transformation to map facade to rectangle}
 
+\clearpage
 \section{Compute distances of patrol car and bridge}
 
+\clearpage
 \section{Compute distances from the image}
 
+\clearpage
 \section{Different perspectives in a tennis match}
 
 \begin{itemize}
@@ -97,6 +100,18 @@
 
 \subsection{Why is the perspective different}
 
+\begin{figure}[H]
+  \includegraphics[width=0.475\textwidth]{imgs/tennis1}
+  \hfill
+  \includegraphics[width=0.475\textwidth]{imgs/tennis1_excel}
+\end{figure}
+
+\begin{figure}[H]
+  \includegraphics[width=0.475\textwidth]{imgs/tennis2}
+  \hfill
+  \includegraphics[width=0.475\textwidth]{imgs/tennis2_excel}
+\end{figure}
+
 
 \subsection{Find vanishing points using cross-ratios}
 
@@ -123,11 +138,30 @@ World & $CD, C'D'$      & 78 ft     \\ \hline
 \end{tabular}
 \end{table}
 
+\textbf{Vanishing Point for Image 1}
 \begin{align*}
-  \frac{CD/DV}{{M_1}C/M_1V} &= \frac{C_wD_w/D_wV_w}{{M_1}_wC_w/{M_1}_wV_w} \\
-  \frac{816/DV}{195/M_1V}   &= 2 \cdot {M_1}_wV_w/D_wV_w \\
+  \frac{DC/DV}{{M_1}C/M_1V} &= \frac{C_wD_w/D_wV_w}{{M_1}_wC_w/{M_1}_wV_w} \\
+  \frac{816/DV}{195/M_1V}                 &= 2 \cdot {M_1}_wV_w/D_wV_w \\
+  \frac{816}{195}\cdot \frac{M_1V}{DV}    &= 2 \cdot {M_1}_wV_w/D_wV_w \\
+  \frac{195 + CV}{816 + CV}   &= \frac{195}{816}\cdot 2 \cdot 1 \\
+  (195 + CV) \cdot 816   &= 390 \cdot (816 + CV) \\
+  CV \cdot (816 - 390)   &= 816 \cdot (390 - 195)\\
+  CV  &= \frac{816 \cdot 195} {426}\\
+  CV  &= 374\\
 \end{align*}
 
+\textbf{Vanishing Point for Image 2}
+\begin{align*}
+  \frac{D'C'/D'V'}{{M_1}'C'/{M_1}'V'} &= \frac{{C_w}'{D_w}'/{D_w}'{V_w}'}
+                                        {{{M_1}_w}'{C_w}'/{{M_1}_w}'{V_w}'} \\
+  \frac{820/DV}{257/M_1V}                 &= 2 \cdot {M_1}_wV_w/D_wV_w \\
+  \frac{820}{257}\cdot \frac{M_1V}{DV}    &= 2 \cdot {M_1}_wV_w/D_wV_w \\
+  \frac{257 + CV}{820 + CV}   &= \frac{257}{820}\cdot 2 \cdot 1 \\
+  (257 + CV) \cdot 820   &= 514 \cdot (820 + CV) \\
+  CV \cdot (820 - 514)   &= 820 \cdot (514 - 257)\\
+  CV  &= \frac{820 \cdot 257} {306}\\
+  CV  &= 689\\
+\end{align*}
 
 \subsection{Find vanishing points for court baselines}
 \subsection{Compute the focal length of each image}
