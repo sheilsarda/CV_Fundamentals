@@ -252,31 +252,23 @@ Solving the above equation for $DV$, we obtain $DV = 20.87$ units.
 
 \clearpage
 \section{Different perspectives in a tennis match}
-
-\begin{itemize}
-    \item You should get the coordinates of the points in the image. To do so you can use 
-        any unit you want. Using pixels is the most convenient. 
-    \item The cross ratio should  be applied in one of the baselines, and you can use 
-        the net in the middle of the court as an extra point.
-    \item Since you have measured coordinates of A and B, you can use the similar triangle 
-        to obtain the coordinate of V.
-    \item I had taken average of the vanishing points obtained by using cross ratio on AB 
-        and CD due to the minor differences between them.
-    \item For each pair of sidelines you should find 1 vanishing point (so 2 in total 
-        for the two images). In the same image using the cross ratio in the two sidelines, 
-        you  should get the same vanishing points (they will not be exactly the same but 
-        they will be close enough, you can just use one of them)
-    \item For the intersection of baselines you can use intersection of lines.
-    \item You cannot define a coordinate system where (0,0,1) is one corner and (1,1,1) 
-        is the other because you will mess the distances. In the tennis case we don't 
-        have a square. You should modify the method so that it uses [27,78,1] 
-        instead of [1,1,1]
-    \item  Oh, I see. We should use two images of the same plane, tennis court, to construct 
-        two vanishing lines and find the principle point.
-\end{itemize}
-
-
 \subsection{Why is the perspective different}
+
+\begin{figure}[H]
+    \includegraphics[width=0.475\textwidth]{imgs/tennis1_original}
+    \hfill
+    \includegraphics[width=0.475\textwidth]{imgs/tennis2_original}
+  \end{figure}
+
+The perspective of the two images above are different because the camera for the 
+left image is located much closer to the court than the right image due to the
+construction of the stadium.
+
+Consequently, the image on the right is more zoomed-in to focus-in on the court
+whereas the image on the left uses a larger Field of View lens to get the entire
+court into focus from the shorter distance.
+
+\subsection{Find vanishing points using cross-ratios}
 
 \begin{figure}[H]
   \includegraphics[width=0.475\textwidth]{imgs/tennis1}
@@ -289,9 +281,6 @@ Solving the above equation for $DV$, we obtain $DV = 20.87$ units.
   \hfill
   \includegraphics[width=0.475\textwidth]{imgs/tennis2_excel}
 \end{figure}
-
-
-\subsection{Find vanishing points using cross-ratios}
 
 Known quantities:
 \begin{table}[H]
@@ -832,6 +821,19 @@ From the previous part, we also know that the homography $H$ is as follows:
 \end{align*}
 
 \subsection{Compute the vanishing points using intersection of parallel lines}
+
+\clearpage
+\section{Correct perspective of reflection painting}
+
+I believe this painting is not perspectively correct, since the lines connecting
+the points in the image, such as the stool or the girls lower body does not 
+converge to the same vanishing point.
+
+Hence, according to the linked article, this implies the image is not correct.
+
+\begin{figure}[H]
+    \includegraphics[width=0.90\textwidth]{imgs/girl_at_mirror}
+  \end{figure}
 
 \end{document}
 
