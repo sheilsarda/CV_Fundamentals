@@ -168,6 +168,50 @@ Taking the inverse of the above transformation matrix, we obtain the matrix $T$:
 \clearpage
 \section{Compute distances of patrol car and bridge}
 
+\subsection{Distance from bridge to junction}
+
+Known quantities:
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|l|}
+\hline
+\textbf{Segment} & \textbf{Value}  \\ \hline
+$XA$      & 4 cm     \\ \hline
+$AB$      & 4 cm     \\ \hline
+$BY$      & 2 cm     \\ \hline 
+$YC$      & 1 cm     \\ \hline
+\end{tabular}
+\end{table}
+
+Using cross-ratios of the above quantities, we obtain:
+\begin{align*}
+    \frac{AY/AC}{BY/BC}  &= \frac{6/7}{2/3} \\ 
+    \frac{1-CY}{(0.5-CY)/0.5}  &= \frac{6/7}{2/3} &\text{Given known 
+                                information about junction location}  \\ 
+    \frac{1-CY}{(0.5-CY)/0.5}  &= \frac{6/7}{2/3} \\ 
+    CY  &= \frac{9}{7} \cdot (2CY - 1) + 1  \\ 
+    CY  &= \frac{18 CY}{7} - \frac{2}{7} \\
+    \implies CY &=  \frac{2}{11} = 0.182 km 
+\end{align*}
+
+Using the above information, we can also compute $YB = 0.5 - CY = \frac{7}{22}$.
+
+\subsection{Distance from patrol car to junction}
+
+Using cross-ratios, we obtain:
+\begin{align*}
+    \frac{XB/XY}{AB/AY}  &= \frac{8/10}{4/6} \\ 
+    \frac{(0.5 + XA)/(BY + 0.5 + XA)}{0.5/(BY + 0.5)}  &= \frac{8/10}{4/6}  \\ 
+    \frac{(18/22)(0.5 + XA)}{0.5(18/22 + XA)}  &= \frac{8/10}{4/6}  \\
+    \frac{(9/22) + (18XA/22)}{(9/22 + 0.5XA)}  &= \frac{8/10}{4/6}  \\
+    (4/6)((9/22) + (18XA/22))  &= (9/22 + 0.5XA)(8/10)  \\
+    (3/11) + (6XA/11)  &= 36/110 + (2XA/5)  \\
+    8XA/55  &= 6/110   \\
+    XA  &= (6 * 55) / (110 * 8) = 3/8 = 0.375 km \\
+    \implies XC &= 1 + \frac{3}{8} = 1.375 km 
+\end{align*}
+
 \clearpage
 \section{Compute distances from the image}
 
