@@ -150,6 +150,19 @@ World & $CD, C'D'$      & 78 ft     \\ \hline
   CV  &= 374\\
 \end{align*}
 
+Given the slope of the line and the distance $CV$, we can compute $V$ as follows:
+\begin{align}
+    m &= \frac{548-724}{832-748} = \frac{724-V_y}{748 - V_x}  \\
+    374 &= \sqrt{(724-V_y)^2 + (748 - V_x)^2}
+\end{align}
+
+Solving the above system of equations using Mathematica, we obtain the possible
+vanishing points as:
+\begin{align*}
+    {V_x\to 909.093,V_y\to 386.472} \\
+    {V_x\to 586.907,V_y\to 1061.53} 
+\end{align*}
+
 \textbf{Vanishing Point for Image 2}
 \begin{align*}
   \frac{D'C'/D'V'}{{M_1}'C'/{M_1}'V'} &= \frac{{C_w}'{D_w}'/{D_w}'{V_w}'}
@@ -163,7 +176,138 @@ World & $CD, C'D'$      & 78 ft     \\ \hline
   CV  &= 689\\
 \end{align*}
 
+Given the slope of the line and the distance $CV$, we can compute $V$ as follows:
+\begin{align}
+    m &= \frac{518-754}{1026-924} = \frac{754-V_y}{924 - V_x}  \\
+    689 &= \sqrt{(754-V_y)^2 + (924 - V_x)^2}
+\end{align}
+
+Solving the above system of equations using Mathematica, we obtain the possible
+vanishing points as:
+\begin{align*}
+    {V_x\to 1197.35,V_y\to 121.544} \\
+    {V_x\to 650.65,V_y\to 1386.46} 
+\end{align*}
+
 \subsection{Find vanishing points for court baselines}
+
+\begin{align*}
+  W' \sim P
+   \begin{bmatrix}
+  0   \\
+  0   \\
+  1  
+  \end{bmatrix} \implies 
+  \alpha W' = P
+   \begin{bmatrix}
+  0   \\
+  0   \\
+  1  
+  \end{bmatrix}   \\
+  X' \sim P
+   \begin{bmatrix}
+  0   \\
+  1   \\
+  0  
+  \end{bmatrix} \implies 
+  \beta X' = P
+   \begin{bmatrix}
+  0   \\
+  1   \\
+  0  
+  \end{bmatrix}  \\
+  Y' \sim P
+   \begin{bmatrix}
+  1   \\
+  0   \\
+  0  
+  \end{bmatrix} \implies 
+  \gamma Y' = P
+   \begin{bmatrix}
+  1   \\
+  0   \\
+  0  
+  \end{bmatrix}   \\
+  Z' \sim P
+   \begin{bmatrix}
+  1   \\
+  1   \\
+  1  
+  \end{bmatrix} \implies 
+  \delta Z' = P
+   \begin{bmatrix}
+  1   \\
+  1   \\
+  1  
+  \end{bmatrix} 
+  \end{align*}
+  
+  Combining the above equations:
+  \begin{align*}
+  \delta Z' &= \alpha W' + \beta X' + \gamma Y' \\ \\
+  \delta  \begin{bmatrix}
+  1   \\
+  1   \\
+  1  
+  \end{bmatrix}  &= \alpha  \begin{bmatrix}
+  3  \\
+  0   \\
+  1  
+  \end{bmatrix} +
+  \beta \begin{bmatrix}
+  0   \\
+  3   \\
+  1  
+  \end{bmatrix} + \gamma  \begin{bmatrix}
+  -3   \\
+  0   \\
+  1  
+  \end{bmatrix} 
+  \end{align*} 
+  We can infer that $\delta = 1$, and simplify the system of equations to:
+  \begin{align*}
+  \begin{bmatrix}
+  \alpha & \beta & \gamma
+  \end{bmatrix}  &= \left(\begin{bmatrix}
+  3 & 0 & -3   \\
+  0 & 3  & 0  \\
+  1 & 1  & 1	
+  \end{bmatrix} \right) ^{-1}
+  \begin{bmatrix}
+  1  \\
+  1   \\
+  1  
+  \end{bmatrix}
+  \end{align*} 
+  
+  Solving for the inverse of the coefficient matrix, we obtain:
+  \begin{align*}
+  \begin{bmatrix}
+  \frac{1}{6} & -\frac{1}{6} & \frac{1}{2}	\\
+  0 & \frac{1}{3} & 0  \\
+  -\frac{1}{6}  & -\frac{1}{6}  & \frac{1}{2}	
+  \end{bmatrix} \implies 
+  \begin{bmatrix}
+  \alpha \\
+  \beta \\
+  \gamma
+  \end{bmatrix} = 
+  \begin{bmatrix}
+  \frac{1}{2} \\
+  \frac{1}{3} \\
+  \frac{1}{6}
+  \end{bmatrix} 
+  \end{align*}
+  
+  From this, we obtain the transformation $P$ by multiplying $\alpha, \beta$ and $\gamma$ into the above equation:
+  \begin{align*}
+  \begin{bmatrix}
+  \frac{3}{2} & 0 & -\frac{1}{2}	\\
+  0 & 1 & 0  \\
+  \frac{1}{2}  & \frac{1}{3}  & \frac{1}{6}	
+  \end{bmatrix}
+  \end{align*}
+  
 \subsection{Compute the focal length of each image}
 \subsection{Compute the vanishing points using intersection of parallel lines}
 
