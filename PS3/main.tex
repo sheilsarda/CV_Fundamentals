@@ -76,25 +76,26 @@
 \section{Different perspectives in a tennis match}
 
 \begin{itemize}
-  \item You should get the coordinates of the points in the image. To do so you can use 
-      any unit you want. Using pixels is the most convenient. 
-  \item The cross ratio should  be applied in one of the baselines, and you can use 
-      the net in the middle of the court as an extra point.
-  \item Since you have measured coordinates of A and B, you can use the similar triangle 
-      to obtain the coordinate of V.
-  \item I had taken average of the vanishing points obtained by using cross ratio on AB 
-      and CD due to the minor differences between them.
-  \item For each pair of sidelines you should find 1 vanishing point (so 2 in total 
-      for the two images). In the same image using the cross ratio in the two sidelines, 
-      you  should get the same vanishing points (they will not be exactly the same but 
-      they will be close enough, you can just use one of them)
-  \item For the intersection of baselines you can use intersection of lines.
-  \item You cannot define a coordinate system where (0,0,1) is one corner and (1,1,1) 
-      is the other because you will mess the distances. In the tennis case we don't 
-      have a square. You should modify the method so that it uses [27,78,1] 
-      instead of [1,1,1]
-  \item  Oh, I see. We should use two images of the same plane, tennis court, to construct 
-      two vanishing lines and find the principle point.
+    \item You should get the coordinates of the points in the image. To do so you can use 
+        any unit you want. Using pixels is the most convenient. 
+    \item The cross ratio should  be applied in one of the baselines, and you can use 
+        the net in the middle of the court as an extra point.
+    \item Since you have measured coordinates of A and B, you can use the similar triangle 
+        to obtain the coordinate of V.
+    \item I had taken average of the vanishing points obtained by using cross ratio on AB 
+        and CD due to the minor differences between them.
+    \item For each pair of sidelines you should find 1 vanishing point (so 2 in total 
+        for the two images). In the same image using the cross ratio in the two sidelines, 
+        you  should get the same vanishing points (they will not be exactly the same but 
+        they will be close enough, you can just use one of them)
+    \item For the intersection of baselines you can use intersection of lines.
+    \item You cannot define a coordinate system where (0,0,1) is one corner and (1,1,1) 
+        is the other because you will mess the distances. In the tennis case we don't 
+        have a square. You should modify the method so that it uses [27,78,1] 
+        instead of [1,1,1]
+    \item  Oh, I see. We should use two images of the same plane, tennis court, to construct 
+        two vanishing lines and find the principle point.
+    \item 
 \end{itemize}
 
 
@@ -475,7 +476,8 @@ Solving for the inverse of the coefficient matrix, we obtain:
 \end{bmatrix} 
 \end{align*}
   
-From this, we obtain the transformation $P$ by multiplying $\alpha, \beta$ and $\gamma$ into the above equation:
+From this, we obtain the transformation $P$ by multiplying $\alpha, \beta$ and 
+$\gamma$ into the above equation:
 
 \begin{align*}
     \begin{bmatrix} 748   \\ 724   \\ 1   \end{bmatrix}  &= 
@@ -490,6 +492,8 @@ From this, we obtain the transformation $P$ by multiplying $\alpha, \beta$ and $
     \end{bmatrix} \times 
     \begin{bmatrix} 27 \\ 78 \\ 1  \end{bmatrix} \\
 \end{align*} 
+
+
 
 \subsubsection*{Image 2} 
 
@@ -603,6 +607,53 @@ From this, we obtain the transformation $P$ by multiplying $\alpha, \beta$
   \end{align*} 
 
 \subsection{Compute the focal length of each image}
+
+\subsubsection*{Horizon of Image 1} 
+
+We can compute the horizon by taking the cross-product of the horizontal and Vertical
+vanishing points of this image, as computed in the previous parts.
+
+\begin{align*}
+h   &=  \begin{bmatrix} 402036  \\ -5891 \\ 1  \end{bmatrix} \times 
+        \begin{bmatrix} 576   \\ 1095   \\   1   \end{bmatrix} \\ \\
+    &=  \begin{bmatrix} -6986   \\ -401460   \\ 443622636   \end{bmatrix}  \\ \\   
+\implies V_A  &=  \begin{bmatrix} 0   \\ 0   \\ 1   \end{bmatrix} \times  
+        \begin{bmatrix} -6986   \\ -401460   \\ 443622636 \end{bmatrix} \\ \\
+    &=  \begin{bmatrix} 401460   \\ -6986   \\ 0   \end{bmatrix} 
+\end{align*}
+
+From the previous part, we also know that the homography $H$ is as follows:
+\begin{align*}
+\begin{bmatrix}
+    13.4944     &  4.9186   & 0 \\
+    -0.1977     &  9.3505   & 0 \\
+    0           & 0.0085  & 0.3300
+\end{bmatrix}
+\end{align*}
+
+\subsubsection*{Horizon of Image 2} 
+
+We can compute the horizon by taking the cross-product of the horizontal and Vertical
+vanishing points of this image, as computed in the previous parts.
+
+\begin{align*}
+h   &=  \begin{bmatrix} 158340  \\ 754 \\ 1  \end{bmatrix} \times 
+        \begin{bmatrix} 651   \\ 1386 \\   1   \end{bmatrix} 
+    =  \begin{bmatrix} -632   \\ -157689   \\ 218968386   \end{bmatrix}  \\ \\   
+\implies V_A  &=  \begin{bmatrix} 0   \\ 0   \\ 1   \end{bmatrix} \times
+        \begin{bmatrix} -632   \\ -157689   \\ 218968386   \end{bmatrix} 
+    =  \begin{bmatrix} 157689   \\ -632   \\ 0   \end{bmatrix} 
+\end{align*}
+
+From the previous part, we also know that the homography $H$ is as follows:
+\begin{align*}
+\begin{bmatrix}
+    21.1528     &   4.5240  & 0 \\
+    0.1007       &   9.6318   & 0 \\
+    0.0001       &   0.0069 & 0.4543
+\end{bmatrix}
+\end{align*}
+
 \subsection{Compute the vanishing points using intersection of parallel lines}
 
 \end{document}
