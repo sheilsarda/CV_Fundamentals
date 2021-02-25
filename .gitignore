@@ -10,3 +10,7 @@
 *.out
 *.toc
 *.synctex.gz
+
+*.fls
+*.fdb_latexmk
+__latexindent_temp.text 

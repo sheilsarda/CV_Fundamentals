@@ -29,9 +29,9 @@
 \definecolor{mygreen}{RGB}{28,172,0} % color values Red, Green, Blue
 \definecolor{mylilas}{RGB}{170,55,241}
 
-\title{CIS580 PSet 2}
+\title{CIS580 PSet 3}
 \author{Sheil Sarda}
-\date{02.14.2021}
+\date{02.24.2021}
 
 \begin{document}
 \lstset{language=Matlab,%
@@ -55,7 +55,7 @@
     \begin{flushleft}
         \vspace*{1cm}
         \Huge
-        \textbf{CIS580 Problem Set 2\\ }
+        \textbf{CIS580 Problem Set 3\\ }
         \vspace*{0.5cm}
         \normalsize
         Sheil Sarda \verb|<sheils@seas.upenn.edu>| \\
@@ -64,477 +64,74 @@
     \end{flushleft}
 \end{titlepage}
 
-\section{Line that passes through the points}
+\section{Transformation to map facade to rectangle}
 
-\subsection{$[0, a, 0], [0, 0, a]$}
-  \begin{align*}
-    l &= \begin{bmatrix}
-           0 \\
-           a \\
-           0
-         \end{bmatrix} \times 
-          \begin{bmatrix}
-                    0 \\
-                    0 \\
-                    a
-                  \end{bmatrix}  
-= 
- \begin{bmatrix}
-                    a^2 - 0 \\
-                    0 - 0 \\
-                    0 - 0
-                  \end{bmatrix}                   
-= 
- \begin{bmatrix}
-                    a^2  \\
-                    0  \\
-                    0 
-                  \end{bmatrix}                                                   
-  \end{align*}
+\section{Compute distances of patrol car and bridge}
 
-\subsection{$[a, a, 1], [a, a, 2]$}
-  \begin{align*}
-    l &= \begin{bmatrix}
-           a \\
-           a \\
-           1
-         \end{bmatrix} \times 
-          \begin{bmatrix}
-                    a \\
-                    a \\
-                    2
-                  \end{bmatrix}  
-= 
- \begin{bmatrix}
-                    2a - a \\
-                    a - 2a \\
-                    a^2 - a^2
-                  \end{bmatrix}                   
-= 
- \begin{bmatrix}
-                    a  \\
-                    -a  \\
-                    0 
-                  \end{bmatrix}                                                   
-  \end{align*}
+\section{Compute distances from the image}
 
-\subsection{$[a, b, 0], [c, d, 0]$}
-  \begin{align*}
-    l &= \begin{bmatrix}
-           a \\
-           b \\
-           0
-         \end{bmatrix} \times 
-          \begin{bmatrix}
-                    c \\
-                    d \\
-                    0
-                  \end{bmatrix}  
-= 
- \begin{bmatrix}
-                    0 -0 \\
-                    0-0 \\
-                    ad - bc
-                  \end{bmatrix}                   
-= 
- \begin{bmatrix}
-                    0  \\
-                    0  \\
-                    ad - bc 
-                  \end{bmatrix}                                                   
-  \end{align*}
-  
-\section{Point of Intersection $\in \mathbb{P}^2$}  
-\subsection{$x-y + w = 0, w = 0$}
-  \begin{align*}
-    P &= \begin{bmatrix}
-           1 \\
-           -1 \\
-           1
-         \end{bmatrix} \times 
-          \begin{bmatrix}
-                    0 \\
-                    0 \\
-                    1
-                  \end{bmatrix}  
-= 
- \begin{bmatrix}
-                    -1 - 0 \\
-                    0-1 \\
-                    0 - 0
-                  \end{bmatrix}                   
-= 
- \begin{bmatrix}
-                    -1  \\
-                    -1 \\
-                    0 
-                  \end{bmatrix}                                                   
-  \end{align*}
-\subsection{$3x-w=0 , 4y - w = 0$}
-  \begin{align*}
-    P &= \begin{bmatrix}
-           3 \\
-           0 \\
-           -1
-         \end{bmatrix} \times 
-          \begin{bmatrix}
-                    0 \\
-                    4 \\
-                    -1
-                  \end{bmatrix}  
-= 
- \begin{bmatrix}
-                    0+4 \\
-                    0+3 \\
-                    12-0
-                  \end{bmatrix}                   
-= 
- \begin{bmatrix}
-                    4 \\
-                    3 \\
-                    12 
-                  \end{bmatrix}                                                   
-  \end{align*}
-\subsection{$x-y+5w=0, x-y+2w$}
-  \begin{align*}
-    P &= \begin{bmatrix}
-           1 \\
-           -1 \\
-           5
-         \end{bmatrix} \times 
-          \begin{bmatrix}
-                    1 \\
-                    -1 \\
-                    2
-                  \end{bmatrix}  
-= 
- \begin{bmatrix}
-                    -2+5 \\
-                    5-2\\
-                    -1+1
-                  \end{bmatrix}                   
-= 
- \begin{bmatrix}
-                    1 \\
-                    1 \\
-                    0 
-                  \end{bmatrix}                                                   
-  \end{align*}
-  
-\section{Find $\lambda$ such that three lines intersect}  
+\section{Different perspectives in a tennis match}
 
-Write the lines in a matrix system of equations:
+\begin{itemize}
+  \item You should get the coordinates of the points in the image. To do so you can use 
+      any unit you want. Using pixels is the most convenient. 
+  \item The cross ratio should  be applied in one of the baselines, and you can use 
+      the net in the middle of the court as an extra point.
+  \item Since you have measured coordinates of A and B, you can use the similar triangle 
+      to obtain the coordinate of V.
+  \item I had taken average of the vanishing points obtained by using cross ratio on AB 
+      and CD due to the minor differences between them.
+  \item For each pair of sidelines you should find 1 vanishing point (so 2 in total 
+      for the two images). In the same image using the cross ratio in the two sidelines, 
+      you  should get the same vanishing points (they will not be exactly the same but 
+      they will be close enough, you can just use one of them)
+  \item For the intersection of baselines you can use intersection of lines.
+  \item You cannot define a coordinate system where (0,0,1) is one corner and (1,1,1) 
+      is the other because you will mess the distances. In the tennis case we don't 
+      have a square. You should modify the method so that it uses [27,78,1] 
+      instead of [1,1,1]
+  \item  Oh, I see. We should use two images of the same plane, tennis court, to construct 
+      two vanishing lines and find the principle point.
+\end{itemize}
+
+
+\subsection{Why is the perspective different}
+
+
+\subsection{Find vanishing points using cross-ratios}
+
+Known quantities:
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|c|l|}
+\hline
+\multicolumn{1}{|l|}{\textbf{Units}} & \textbf{Segment} & \textbf{Value}                \\ \hline
+Image & $AD$      & $\sqrt{1092^2 + 16^2} = 1092$ px     \\ \hline
+Image & $BC$      & $\sqrt{364^2 + 6^2} = 364$ px       \\ \hline
+Image & $AB$      & $\sqrt{730^2 + 384^2} = 825$ px     \\ \hline
+Image & $CD$      & $\sqrt{344^2 + 740^2} = 816$ px     \\ \hline
+Image & $M_1 M_2$ & $\sqrt{540^2 + 14^2} = 540$ px     \\ \hline
+Image & $A'D'$      & $\sqrt{1260^2 + 6^2} = 1260$ px     \\ \hline
+Image & $B'C'$      & $\sqrt{600^2 + 0^2} = 600$ px       \\ \hline
+Image & $A'B'$      & $\sqrt{324^2 + 754^2} = 821$ px     \\ \hline
+Image & $C'D'$      & $\sqrt{336^2 + 748^2} = 820$ px     \\ \hline
+Image & $M_1' M_2'$ & $\sqrt{804^2 + 0^2} = 804$ px     \\ \hline
+World & $AD, A'D'$      & 27 ft     \\ \hline
+World & $BC, B'C$       & 27 ft     \\ \hline
+World & $AB, A'B'$      & 78 ft     \\ \hline
+World & $CD, C'D'$      & 78 ft     \\ \hline
+\end{tabular}
+\end{table}
 
 \begin{align*}
-\begin{bmatrix}
-0 		& 0 		& 1\\
-1 		& \lambda 	& \lambda\\
-\lambda & 1 		& \lambda
-\end{bmatrix} 
-\begin{bmatrix}
-x\\
-y\\
-w
-\end{bmatrix} = 
-\begin{bmatrix}
-0\\
-0\\
-0
-\end{bmatrix}
+  \frac{CD/DV}{{M_1}C/M_1V} &= \frac{C_wD_w/D_wV_w}{{M_1}_wC_w/{M_1}_wV_w} \\
+  \frac{816/DV}{195/M_1V}   &= 2 \cdot {M_1}_wV_w/D_wV_w \\
 \end{align*}
 
-Given that $w = 0$, we reduce the system of equations to the following:      
-\begin{align*}
-\begin{bmatrix}
-1 		& \lambda 		\\
-\lambda & 1 		
-\end{bmatrix} 
-\begin{bmatrix}
-x\\
-y
-\end{bmatrix} = 
-\begin{bmatrix}
-0\\
-0
-\end{bmatrix}
-\end{align*}
 
-Set the determinant equal to zero:
-\begin{align*}
-1-\lambda &= 0 \\
-(1-\lambda)(1 + \lambda ) &= 0 \\
-\lambda &= -1, 1
-\end{align*}
-
-We choose $\lambda = -1$ since in the other case, we do not have three distinct lines. Using this, we compute the point of intersection as follows:
-
-\begin{align*}
-\begin{bmatrix}
-0 \\
-0 \\ 
-0
-\end{bmatrix} \times
-\begin{bmatrix}
-1 \\
--1 \\ 
--1
-\end{bmatrix} = 
-\begin{bmatrix}
-0 +1\\
-1+0\\ 
-0+0
-\end{bmatrix} =
-\begin{bmatrix}
-1\\
-1\\ 
-0
-\end{bmatrix} 
-\end{align*}
-
-\section{Find projective transformation $A$}  
-
-We wish to preserve:
-\begin{align*}
-P_1 &= (1, 0, 0)\\
-P_2 &= (0, 1, 0)\\
-O &= (0, 0, 1)
-\end{align*}
-
-We wish to map: $P_3 = (1, 1, 1) \to {P_3}' = (3, 2, 1)$
-
-\begin{align*}
-({P_1}', {P_2}', {P_3}', O) &= M ({P_1}, {P_2}, {P_3}, O) \\ \\
-\begin{bmatrix}
-\lambda_1 	& 0 		& 3\lambda_3 	& 0 \\
-0 			& \lambda_2 & 2\lambda_3 	& 0 \\
-0		 	& 0 		& \lambda_3 	& \lambda_4 
-\end{bmatrix}  &=
-M \begin{bmatrix}
-1 			& 0 	& 1 	& 0 \\
-0 			& 1 	& 1 	& 0 \\
-0		 	& 0 	& 1 	& 1 
-\end{bmatrix} 
-\end{align*}
-
-Simplify the matrix by dividing by $\lambda_4$ on both sides:
-\begin{align*}
-\begin{bmatrix}
-a 	& 0 & 3c 	& 0 \\
-0 	& b & 2c 	& 0 \\
-0	& 0 & c 	& 1
-\end{bmatrix}  &=
-M' \begin{bmatrix}
-1 			& 0 	& 1 	& 0 \\
-0 			& 1 	& 1 	& 0 \\
-0		 	& 0 	& 1 	& 1 
-\end{bmatrix} 
-\end{align*}
-Compute the matrix product on the RHS of the above equation, and solve for $M'$ as follows:
-\begin{align*}
-M  &=
- \begin{bmatrix}
-a 			& 0 	& 0 	\\
-0 			& b 	& 0 	\\
-0		 	& 0 	& 1 	
-\end{bmatrix}  =
- \begin{bmatrix}
-3 			& 0 	& 0 	\\
-0 			& 2 	& 0 	\\
-0		 	& 0 	& 1 	
-\end{bmatrix}  \text{ $\because c = 1$}
-\end{align*}
-
-\section{Find projective transformation $P$}  
-
-\begin{align*}
-W' \sim P
- \begin{bmatrix}
-0 		\\
-0 		\\
-1		
-\end{bmatrix} \implies 
-\alpha W' = P
- \begin{bmatrix}
-0 		\\
-0 		\\
-1		
-\end{bmatrix}   \\
-X' \sim P
- \begin{bmatrix}
-0 		\\
-1 		\\
-0		
-\end{bmatrix} \implies 
-\beta X' = P
- \begin{bmatrix}
-0 		\\
-1 		\\
-0		
-\end{bmatrix}  \\
-Y' \sim P
- \begin{bmatrix}
-1 		\\
-0 		\\
-0		
-\end{bmatrix} \implies 
-\gamma Y' = P
- \begin{bmatrix}
-1 		\\
-0 		\\
-0		
-\end{bmatrix}   \\
-Z' \sim P
- \begin{bmatrix}
-1 		\\
-1 		\\
-1		
-\end{bmatrix} \implies 
-\delta Z' = P
- \begin{bmatrix}
-1 		\\
-1 		\\
-1		
-\end{bmatrix} 
-\end{align*}
-
-Combining the above equations:
-\begin{align*}
-\delta Z' &= \alpha W' + \beta X' + \gamma Y' \\ \\
-\delta  \begin{bmatrix}
-1 		\\
-1 		\\
-1		
-\end{bmatrix}  &= \alpha  \begin{bmatrix}
-3		\\
-0 		\\
-1		
-\end{bmatrix} +
-\beta \begin{bmatrix}
-0 		\\
-3 		\\
-1		
-\end{bmatrix} + \gamma  \begin{bmatrix}
--3 		\\
-0 		\\
-1		
-\end{bmatrix} 
-\end{align*} 
-We can infer that $\delta = 1$, and simplify the system of equations to:
-\begin{align*}
-\begin{bmatrix}
-\alpha & \beta & \gamma
-\end{bmatrix}  &= \left(\begin{bmatrix}
-3 & 0 & -3 		\\
-0 & 3  & 0		\\
-1 & 1  & 1	
-\end{bmatrix} \right) ^{-1}
-\begin{bmatrix}
-1		\\
-1 		\\
-1		
-\end{bmatrix}
-\end{align*} 
-
-Solving for the inverse of the coefficient matrix, we obtain:
-\begin{align*}
-\begin{bmatrix}
-\frac{1}{6} & -\frac{1}{6} & \frac{1}{2}	\\
-0 & \frac{1}{3} & 0		\\
--\frac{1}{6}  & -\frac{1}{6}  & \frac{1}{2}	
-\end{bmatrix} \implies 
-\begin{bmatrix}
-\alpha \\
-\beta \\
-\gamma
-\end{bmatrix} = 
-\begin{bmatrix}
-\frac{1}{2} \\
-\frac{1}{3} \\
-\frac{1}{6}
-\end{bmatrix} 
-\end{align*}
-
-From this, we obtain the transformation $P$ by multiplying $\alpha, \beta$ and $\gamma$ into the above equation:
-\begin{align*}
-\begin{bmatrix}
-\frac{3}{2} & 0 & -\frac{1}{2}	\\
-0 & 1 & 0		\\
-\frac{1}{2}  & \frac{1}{3}  & \frac{1}{6}	
-\end{bmatrix}
-\end{align*}
-
-\section{Determine the projective transformation $A$}
-
-Following the same method as the previous question, we set-up the system of equations as follows:
-\begin{align*}
-\delta  \begin{bmatrix}
-1 		\\
-1 		\\
-1		
-\end{bmatrix}  &= \alpha  \begin{bmatrix}
--a		\\
-0 		\\
-1		
-\end{bmatrix} +
-\beta \begin{bmatrix}
-0 		\\
-b 		\\
-1		
-\end{bmatrix} + \gamma  \begin{bmatrix}
-0 		\\
-0 		\\
-1		
-\end{bmatrix} 
-\end{align*} 
-We can infer that $\delta = 1$, and simplify the system of equations to:
-\begin{align*}
-\begin{bmatrix}
-\alpha & \beta & \gamma
-\end{bmatrix}  &= \left(\begin{bmatrix}
--a & 0 & 0 		\\
-0 & b  & 0		\\
-1 & 1  & 1	
-\end{bmatrix} \right) ^{-1}
-\begin{bmatrix}
-1		\\
-1 		\\
-1		
-\end{bmatrix}
-\end{align*} 
-
-Solving for the inverse of the coefficient matrix, we obtain:
-\begin{align*}
-\begin{bmatrix}
--\frac{1}{a} & 0 & 0	\\
-0 & \frac{1}{b} & 0		\\
-\frac{1}{a}  & -\frac{1}{b}  & 1	
-\end{bmatrix} \implies 
-\begin{bmatrix}
-\alpha \\
-\beta \\
-\gamma
-\end{bmatrix} = 
-\begin{bmatrix}
--\frac{1}{a} \\
-\frac{1}{b} \\
-\frac{1}{a} - \frac{1}{b} + 1
-\end{bmatrix} 
-\end{align*}
-
-In the above equation, we know $\gamma = 1$ because the origin is preserved by the transformation. From this result, we obtain the transformation $A^{-1}$ by multiplying $\alpha, \beta$ and $\gamma$ into the above equation:
-\begin{align*}
-A^{-1} =
-\begin{bmatrix}
-1 & 0 & 0	\\
-0 & 1 & 0		\\
--\frac{1}{a}  & \frac{1}{b}  & 1
-\end{bmatrix} \implies 
-A = \begin{bmatrix}
-1 & 0 & 0	\\
-0 & 1 & 0		\\
-\frac{1}{a}  & -\frac{1}{b}  & 1
-\end{bmatrix}
-\end{align*}
+\subsection{Find vanishing points for court baselines}
+\subsection{Compute the focal length of each image}
+\subsection{Compute the vanishing points using intersection of parallel lines}
 
 \end{document}
 
