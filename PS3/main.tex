@@ -477,7 +477,6 @@ Solving for the inverse of the coefficient matrix, we obtain:
   
 From this, we obtain the transformation $P$ by multiplying $\alpha, \beta$ and $\gamma$ into the above equation:
 
-Combining the above equations:
 \begin{align*}
     \begin{bmatrix} 748   \\ 724   \\ 1   \end{bmatrix}  &= 
     \gamma  \begin{bmatrix} 402036  \\ -5891 \\ 1  \end{bmatrix} + 
@@ -547,9 +546,9 @@ Combining the above equations:
     
     Combining the above equations:
     \begin{align*}
-    \delta  \begin{bmatrix} 748   \\ 724   \\ 1   \end{bmatrix}  &= 
-    27 \gamma  \begin{bmatrix} 402036  \\ -5891 \\ 1  \end{bmatrix} + 
-    78\beta \begin{bmatrix} 576   \\ 1095   \\   1   \end{bmatrix} + 
+    \delta  \begin{bmatrix} 924   \\ 754   \\ 1   \end{bmatrix}  &= 
+    27 \gamma  \begin{bmatrix} 158340  \\ 754 \\ 1  \end{bmatrix} + 
+    78\beta \begin{bmatrix} 1198   \\ 122   \\   1   \end{bmatrix} + 
     \alpha \begin{bmatrix} 0   \\ 0   \\   1   \end{bmatrix} 
     \end{align*} 
   
@@ -557,21 +556,21 @@ Combining the above equations:
     
   \begin{align*}
   \alpha  \begin{bmatrix} 0  \\ 0   \\ 1   \end{bmatrix} &= 
-  \delta  \begin{bmatrix} 748   \\ 724   \\  1  \end{bmatrix} -
-  78\beta \begin{bmatrix} 576   \\ 1095   \\ 1   \end{bmatrix} 
-  - 27 \gamma  \begin{bmatrix} 402036  \\ -5891 \\ 1  \end{bmatrix} \\ \\ 
+  \delta  \begin{bmatrix} 924   \\ 754   \\ 1   \end{bmatrix}  -
+  78\beta \begin{bmatrix} 1198   \\ 122   \\   1   \end{bmatrix}
+  - 27 \gamma  \begin{bmatrix} 158340  \\ 754 \\ 1  \end{bmatrix}\\ \\ 
   \alpha  \begin{bmatrix} 0  \\ 0   \\ 1   \end{bmatrix} &= 
-  \delta  \begin{bmatrix} 748   \\ 724   \\  1  \end{bmatrix} +
-  \beta \begin{bmatrix} -44928  \\ -85410   \\ -78   \end{bmatrix} +
-  \gamma  \begin{bmatrix} -10854972  \\ 159057 \\ -27 \end{bmatrix} 
+  \delta  \begin{bmatrix} 924   \\ 754   \\ 1   \end{bmatrix}  +
+  \beta \begin{bmatrix} -93444  \\ -9516   \\ -78   \end{bmatrix} +
+  \gamma  \begin{bmatrix} -4275180  \\ -20358 \\ -27 \end{bmatrix} 
   \end{align*} 
   
   \begin{align*}
   \begin{bmatrix} \delta & \beta & \gamma \end{bmatrix}  
   &= \left(\begin{bmatrix}
-  748 & -44928 & -10854972   \\
-  724 & -85410 & 159057 \\
-  1   & -78     & -27	
+    924 & -93444    & -4275180   \\
+    754 & -9516     & -20358\\
+    1   & -78       & -27
   \end{bmatrix} \right) ^{-1}
   \begin{bmatrix}
   0  \\
@@ -582,35 +581,26 @@ Combining the above equations:
   
   Solving for the inverse of the coefficient matrix, we obtain:
   \begin{align*}
-  \begin{bmatrix}
-  \delta \\
-  \beta \\
-  \gamma
-  \end{bmatrix} = 
-  \begin{bmatrix}
-  3.0027    \\
-  0.0256   \\
-  0.0001
-  \end{bmatrix} 
+  \begin{bmatrix} \delta \\ \beta \\ \gamma \end{bmatrix} = 
+  \begin{bmatrix} -0.1851    \\  -0.0153   \\ 0  \end{bmatrix} 
   \end{align*}
     
   From this, we obtain the transformation $P$ by multiplying $\alpha, \beta$ and $\gamma$ into the above equation:
   
-  Combining the above equations:
-  \begin{align*}
-      \begin{bmatrix} 748   \\ 724   \\ 1   \end{bmatrix}  &= 
-      \gamma  \begin{bmatrix} 402036  \\ -5891 \\ 1  \end{bmatrix} + 
-      \beta \begin{bmatrix} 576   \\ 1095   \\   1   \end{bmatrix} + 
-      \alpha \begin{bmatrix} 0   \\ 0   \\   1   \end{bmatrix} \times 
-      \begin{bmatrix} 27 \\ 78 \\ 1  \end{bmatrix} \\ \\
+\begin{align*}
+    \begin{bmatrix} 924   \\ 754   \\ 1   \end{bmatrix}  &= 
+    \gamma  \begin{bmatrix} 158340  \\ 754 \\ 1  \end{bmatrix} + 
+    \beta \begin{bmatrix} 1198   \\ 122   \\   1   \end{bmatrix} + 
+    \alpha \begin{bmatrix} 0   \\ 0   \\   1   \end{bmatrix} \times 
+    \begin{bmatrix} 27 \\ 78 \\ 1  \end{bmatrix} \\ \\
       &= \begin{bmatrix}
-      13.4944     &  4.9186   & 0 \\
-      -0.1977     &  9.3505   & 0 \\
-      0           & 0.0085  & 0.3300
+      -251.7743     &   98.9988  & 0 \\
+      -1.1989       &   10.0817   & 0 \\
+      -0.0016       &   0.0826 & -5.4027
       \end{bmatrix} \times 
       \begin{bmatrix} 27 \\ 78 \\ 1  \end{bmatrix} \\
   \end{align*} 
-  
+
 \subsection{Compute the focal length of each image}
 \subsection{Compute the vanishing points using intersection of parallel lines}
 
