@@ -66,6 +66,105 @@
 
 \section{Transformation to map facade to rectangle}
 
+\begin{align*}
+    W' \sim P
+    \begin{bmatrix} 1   \\ 0   \\ 0   \end{bmatrix} \implies 
+    \alpha W' = P
+    \begin{bmatrix} 1   \\ 0   \\ 0   \end{bmatrix}  &= T_1 \\ \\
+    X' \sim P
+    \begin{bmatrix} 0   \\ 1   \\ 0   \end{bmatrix} \implies 
+    \beta X' = P
+    \begin{bmatrix} 0   \\ 1   \\ 0   \end{bmatrix}  &= T_2 \\ \\
+    Y' \sim P
+    \begin{bmatrix} 0   \\ 0   \\ 1   \end{bmatrix} \implies 
+    \gamma Y' = P
+    \begin{bmatrix} 0   \\ 0   \\ 1   \end{bmatrix}   &= T_3 \\ \\
+    Z' \sim P
+    \begin{bmatrix} 1   \\ 1    \\ 1   \end{bmatrix} \implies 
+    \delta Z' = P
+    \begin{bmatrix} 1   \\ 1   \\ 1 \end{bmatrix}   &= T_1 + T_2 + T_3
+\end{align*}
+    
+    Combining the above equations:
+\begin{align*}
+    \delta  \begin{bmatrix} 1   \\ 1   \\ 1   \end{bmatrix}  &= 
+    \alpha \begin{bmatrix} -b   \\ 0   \\   1   \end{bmatrix} +
+    \beta \begin{bmatrix} 0   \\ h   \\   1   \end{bmatrix} + 
+    \gamma  \begin{bmatrix} 0  \\ 0 \\ 1  \end{bmatrix} 
+\end{align*} 
+  
+    We can infer that $\delta = 1$, and simplify the system of equations to:
+    
+\begin{align*}
+    \delta  \begin{bmatrix} 1   \\ 1   \\ 1   \end{bmatrix}  &= 
+    \alpha \begin{bmatrix} -b   \\ 0   \\   1   \end{bmatrix} +
+    \beta \begin{bmatrix} 0   \\ h   \\   1   \end{bmatrix} + 
+    \gamma  \begin{bmatrix} 0  \\ 0 \\ 1  \end{bmatrix}
+\end{align*} 
+  
+\begin{align*}
+  \begin{bmatrix} \alpha & \beta & \gamma \end{bmatrix}  
+  &= \left(\begin{bmatrix}
+  -b    & 0     & 0   \\
+  0     & h     & 0 \\
+  1     & 1     & 1
+  \end{bmatrix} \right) ^{-1}
+  \begin{bmatrix}
+  1  \\
+  1   \\
+  1  
+  \end{bmatrix}
+\end{align*} 
+  
+  Solving for the inverse of the coefficient matrix, we obtain:
+  \begin{align*}
+  \begin{bmatrix}
+  \alpha \\
+  \beta \\
+  \gamma
+  \end{bmatrix} = 
+  \begin{bmatrix}
+  -1 / b    \\
+  1 / h   \\
+  1/b - 1/h + 1
+  \end{bmatrix} 
+  \end{align*}
+    
+  From this, we obtain the transformation $P$ by multiplying $\alpha, \beta$ and 
+  $\gamma$ into the above equation:
+  
+\begin{align*}
+    T^{-1} &=
+    \alpha \begin{bmatrix} -b   \\ 0   \\   1   \end{bmatrix} +
+    \beta \begin{bmatrix} 0   \\ h   \\   1   \end{bmatrix} + 
+    \gamma  \begin{bmatrix} 0  \\ 0 \\ 1  \end{bmatrix}  \times
+    \begin{bmatrix} 1  \\ 1 \\ 1  \end{bmatrix}         \\ \\
+    &=   \frac{-1}{b} \begin{bmatrix} -b   \\ 0   \\   1   \end{bmatrix} +
+    \frac{1}{h} \begin{bmatrix} 0   \\ h   \\   1   \end{bmatrix} + 
+    \left(\frac{1}{b} - \frac{1}{h} + 1 \right) 
+    \begin{bmatrix} 0  \\ 0 \\ 1  \end{bmatrix}  \times
+    \begin{bmatrix} 1  \\ 1 \\ 1  \end{bmatrix}  \\ \\
+    &= \begin{bmatrix}
+      1             &  0   & 0 \\
+      0             &  1   & 0 \\
+      \frac{-1}{b}  &  \frac{1}{h}  & \frac{1}{b} - \frac{1}{h} + 1
+      \end{bmatrix} \times 
+      \begin{bmatrix} 1 \\ 1 \\ 1  \end{bmatrix} \\
+\end{align*} 
+    
+Taking the inverse of the above transformation matrix, we obtain the matrix $T$:
+
+\begin{align*}
+    T &=
+    \begin{bmatrix}
+      1             &  0   & 0 \\
+      0             &  1   & 0 \\
+      \frac{h}{h - b + bh}      &  
+      \frac{-b}{h - b + bh}     & 
+      \frac{bh}{h - b + bh}
+      \end{bmatrix}
+\end{align*}
+
 \clearpage
 \section{Compute distances of patrol car and bridge}
 
@@ -95,7 +194,6 @@
         instead of [1,1,1]
     \item  Oh, I see. We should use two images of the same plane, tennis court, to construct 
         two vanishing lines and find the principle point.
-    \item 
 \end{itemize}
 
 
