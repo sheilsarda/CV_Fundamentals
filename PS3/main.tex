@@ -330,6 +330,8 @@ vanishing points as:
     {V_x\to 586.907,V_y\to 1061.53} 
 \end{align*}
 
+Based on what we know about the image, the vertical vanishing point is:
+$$     {V_x\to 586.907,V_y\to 1061.53}  $$
 
 
 \textbf{Vanishing Point for Image 2}
@@ -357,6 +359,10 @@ vanishing points as:
     {V_x\to 1197.35,V_y\to 121.544} \\
     {V_x\to 650.65,V_y\to 1386.46} 
 \end{align*}
+
+Based on what we know about the image, the vertical vanishing point is:
+$$    {V_x\to 650.65,V_y\to 1386.46}   $$
+
 
 \subsection{Find vanishing points for court baselines}
 
@@ -738,7 +744,11 @@ From the previous part, we also know that the homography $H$ is as follows:
 \begin{align*}
 I_A &= \begin{bmatrix} 29793 \\ -117 \\ 3 \end{bmatrix}  \implies 
 I_B = \begin{bmatrix} 117 \\ 29793 \\ 3 \end{bmatrix}  \\ \\
-\implies  V_B &= \begin{bmatrix} 148120 \\ 278550 \\ 250 \end{bmatrix}  
+\implies  V_B &= \begin{bmatrix} 148120 \\ 278550 \\ 250 \end{bmatrix} \\ \\ 
+\implies  I_C &= \frac{I_A}{||I_A||}  + \frac{I_B}{||I_B||} = 
+\begin{bmatrix} 1.0039 \\ 0.9961 \\ 0.0002 \end{bmatrix}  \implies
+V_C = 
+\begin{bmatrix} 18.4466 \\ 9.1152 \\ 0.0085 \end{bmatrix} 
 \end{align*}
 
 Determining the slope $m$ of the horizon line $h$: 
@@ -767,7 +777,17 @@ Thus, the principal point $P$ is:
     P &= \begin{bmatrix}577.06 \\ 228 \\1 \end{bmatrix} 
 \end{align*}
 
+Given this information, we can compute the focal length as:
+$$ f = \sqrt{{d_1}^2 - {d_2}^2} $$
 
+Where $d_1$ is the distance between $V_B$ and $V_C$, and $d_2$ is the distance
+between $V_B$ and $P$.
+
+\begin{align*}
+    d_1 &=  1579.3 \\
+    d_2 &= 868 \\ 
+    f &= 1319.4
+\end{align*}
 % [549, -331, 1]
 % 19,640 pixels focal length
 % I_A = H^-1(V_A)
@@ -809,7 +829,11 @@ From the previous part, we also know that the homography $H$ is as follows:
 \begin{align*}
     I_A &= \begin{bmatrix} 7485 \\ -144 \\ 0.5 \end{bmatrix} \implies 
     I_B = \begin{bmatrix} 144 \\ 7485 \\ 0.5 \end{bmatrix}  \\ \\
-    \implies  V_B &= \begin{bmatrix} 36908 \\ 72114 \\ 52 \end{bmatrix}  
+    \implies  V_B &= \begin{bmatrix} 36908 \\ 72114 \\ 52 \end{bmatrix}   \\ \\ 
+    \implies  I_C &= \frac{I_A}{||I_A||}  + \frac{I_B}{||I_B||} = 
+    \begin{bmatrix} 1.0190 \\ 0.9806 \\ 0.0001 \end{bmatrix}  \implies
+    V_C = 
+    \begin{bmatrix} 25.9916 \\ 9.5475 \\ 0.0069 \end{bmatrix} 
 \end{align*}
 
 Determining the slope $m$ of the horizon line $h$: 
@@ -838,6 +862,17 @@ Thus, the principal point $P$ is:
     P &= \begin{bmatrix} 705.69 \\ 368 \\1 \end{bmatrix} 
 \end{align*}
 
+Given this information, we can compute the focal length as:
+$$ f = \sqrt{{d_1}^2 - {d_2}^2} $$
+
+Where $d_1$ is the distance between $V_B$ and $V_C$, and $d_2$ is the distance
+between $V_B$ and $P$.
+
+\begin{align*}
+    d_1 &=  3057.1 \\
+    d_2 &= 1168.8 \\ 
+    f &= 2825
+\end{align*}
 \subsection{Compute the vanishing points using intersection of parallel lines}
 
 \textbf{Image 1 Vertical Vanishing Point}
