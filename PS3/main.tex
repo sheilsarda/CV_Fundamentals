@@ -330,69 +330,7 @@ vanishing points as:
     {V_x\to 586.907,V_y\to 1061.53} 
 \end{align*}
 
-Double-checking the answer using cross-products:
 
-\textbf{Image 1 Vertical Vanishing Point}
-
-\begin{align*}
-L_1 &=    \begin{bmatrix}
-            748 \\
-            724 \\
-            1
-        \end{bmatrix} \times 
-        \begin{bmatrix}
-            1092 \\
-            -16 \\
-            1
-        \end{bmatrix}  = 
-        \begin{bmatrix}
-            724 + 16 \\
-            1092 - 748 \\
-            -16*748 - 724*1092
-        \end{bmatrix} = 
-        \begin{bmatrix}
-            740  \\
-            344 \\
-            -802576 
-        \end{bmatrix}                                                   
-\end{align*}
-
-\begin{align*}
-L_2 &=    \begin{bmatrix}
-            384 \\
-            730 \\
-            1
-        \end{bmatrix} \times 
-        \begin{bmatrix}
-            0 \\
-            0 \\
-            1
-        \end{bmatrix}  = 
-        \begin{bmatrix}
-            730  \\
-            -384 \\
-            0 
-        \end{bmatrix}                                                   
-\end{align*}
-
-Now, computing $L_1 \times L_2$ to obtain the vanishing point:
-\begin{align*}
-    \begin{bmatrix}
-        740  \\
-        344 \\
-        -802576 
-    \end{bmatrix} \times 
-    \begin{bmatrix}
-        730  \\
-        -384 \\
-        0 
-    \end{bmatrix}   = 
-\begin{bmatrix}
-    576  \\
-    1095 \\
-    1 
-\end{bmatrix}
-\end{align*}
 
 \textbf{Vanishing Point for Image 2}
 \begin{align*}
@@ -797,6 +735,54 @@ From the previous part, we also know that the homography $H$ is as follows:
 \end{bmatrix}
 \end{align*}
 
+\begin{align*}
+I_A &= \begin{bmatrix} 29793 \\ -117 \\ 3 \end{bmatrix}  \implies 
+I_B = \begin{bmatrix} 117 \\ 29793 \\ 3 \end{bmatrix}  \\ \\
+\implies  V_B &= \begin{bmatrix} 148120 \\ 278550 \\ 250 \end{bmatrix}  
+\end{align*}
+
+Determining the slope $m$ of the horizon line $h$: 
+$$ -6986x -401460 y +  443622636 = 0  \implies m = \frac{-6986x}{401460} = -0.01740$$
+
+This implies, the slope of a line perpendicular to $h$ must have slope $m = 
+\frac{401460}{6986} = 57.4664$. Using the point-slope form, we determine that the line 
+which is perpendicular to $h$ and goes through $V_B$ must have the form:
+
+\begin{align*}
+    y - {V_B}_y &= m (x - {V_B}_x)  \\
+    y - \frac{278550}{250} &= 57.4664 (x - \frac{148120}{250}) 
+\end{align*}
+
+We know that the $y$ coordinate of the principal point must lie at the center 
+of the image, which is located at $228$ pixels.
+
+\begin{align*}
+    228 - \frac{278550}{250} &= 57.4664 (x - \frac{148120}{250})  \\
+    x &=  \frac{1}{ 57.4664}( 228 -  \frac{278550}{250}) + \frac{148120}{250}  \\
+    x &=  577.06 \\
+\end{align*}
+
+Thus, the principal point $P$ is:
+\begin{align*}
+    P &= \begin{bmatrix}577.06 \\ 228 \\1 \end{bmatrix} 
+\end{align*}
+
+
+% [549, -331, 1]
+% 19,640 pixels focal length
+% I_A = H^-1(V_A)
+% I_B = 
+
+% x of I_A = y of I_B
+% y of I_A = -x of I_B
+% z of I_A is z of I_B
+
+% H times I_B = V_B
+
+% horizontal VP 
+% negative reciprocal of slope
+% use coordinates of V_B to get line
+
 \subsubsection*{Horizon of Image 2} 
 
 We can compute the horizon by taking the cross-product of the horizontal and Vertical
@@ -820,7 +806,126 @@ From the previous part, we also know that the homography $H$ is as follows:
 \end{bmatrix}
 \end{align*}
 
+\begin{align*}
+    I_A &= \begin{bmatrix} 7485 \\ -144 \\ 0.5 \end{bmatrix} \implies 
+    I_B = \begin{bmatrix} 144 \\ 7485 \\ 0.5 \end{bmatrix}  \\ \\
+    \implies  V_B &= \begin{bmatrix} 36908 \\ 72114 \\ 52 \end{bmatrix}  
+\end{align*}
+
+Determining the slope $m$ of the horizon line $h$: 
+$$  -632x  -157689y +  218968386 = 0  \implies m = \frac{-632}{157689} = -0.0040$$
+
+This implies, the slope of a line perpendicular to $h$ must have slope $m = 
+\frac{157689}{632} = 249.5079$. Using the point-slope form, we determine that the line 
+which is perpendicular to $h$ and goes through $V_B$ must have the form:
+
+\begin{align*}
+    y - {V_B}_y &= m (x - {V_B}_x)  \\
+    y - \frac{72114}{52} &= 249.51 (x - \frac{36908}{52}) 
+\end{align*}
+
+We know that the $y$ coordinate of the principal point must lie at the center 
+of the image, which is located at $368$ pixels.
+
+\begin{align*}
+    368 - \frac{72114}{52} &= 249.51 (x - \frac{36908}{52})  \\
+    x &=  \frac{1}{ 249.51}( 368 - \frac{72114}{52}) + \frac{36908}{52}  \\
+    x &=  705.69 \\
+\end{align*}
+
+Thus, the principal point $P$ is:
+\begin{align*}
+    P &= \begin{bmatrix} 705.69 \\ 368 \\1 \end{bmatrix} 
+\end{align*}
+
 \subsection{Compute the vanishing points using intersection of parallel lines}
+
+\textbf{Image 1 Vertical Vanishing Point}
+
+\begin{align*}
+L_1 &=    \begin{bmatrix}
+            748 \\
+            724 \\
+            1
+        \end{bmatrix} \times 
+        \begin{bmatrix}
+            1092 \\
+            -16 \\
+            1
+        \end{bmatrix}  = 
+        \begin{bmatrix}
+            724 + 16 \\
+            1092 - 748 \\
+            -16*748 - 724*1092
+        \end{bmatrix} = 
+        \begin{bmatrix}
+            740  \\
+            344 \\
+            -802576 
+        \end{bmatrix}                                                   
+\end{align*}
+
+\begin{align*}
+L_2 &=    \begin{bmatrix}
+            384 \\
+            730 \\
+            1
+        \end{bmatrix} \times 
+        \begin{bmatrix}
+            0 \\
+            0 \\
+            1
+        \end{bmatrix}  = 
+        \begin{bmatrix}
+            730  \\
+            -384 \\
+            0 
+        \end{bmatrix}                                                   
+\end{align*}
+
+Now, computing $L_1 \times L_2$ to obtain the vanishing point:
+\begin{align*}
+    \begin{bmatrix}
+        740  \\
+        344 \\
+        -802576 
+    \end{bmatrix} \times 
+    \begin{bmatrix}
+        730  \\
+        -384 \\
+        0 
+    \end{bmatrix}   = 
+\begin{bmatrix}
+    576  \\
+    1095 \\
+    1 
+\end{bmatrix}
+\end{align*}
+
+
+\textbf{Image 2 Vertical Vanishing Point}
+
+\begin{align*}
+L_1 &=  
+\begin{bmatrix} 924 \\ 754 \\ 1 \end{bmatrix} \times 
+\begin{bmatrix} 1260 \\ 6 \\ 1 \end{bmatrix}  = 
+\begin{bmatrix} 748  \\ 336 \\ -944496 \end{bmatrix}
+\end{align*}
+
+\begin{align*}
+L_2 &=  
+\begin{bmatrix} 324 \\ 754 \\ 1 \end{bmatrix} \times 
+\begin{bmatrix} 0 \\ 0 \\ 1 \end{bmatrix}  = 
+\begin{bmatrix} 754  \\ -324 \\ 0 \end{bmatrix}                                                   
+\end{align*}
+
+Now, computing $L_1 \times L_2$ to obtain the vanishing point:
+\begin{align*}
+    \begin{bmatrix} 748  \\ 336 \\ -944496 \end{bmatrix}
+ \times 
+ \begin{bmatrix} 754  \\ -324 \\ 0 \end{bmatrix}    = 
+    \begin{bmatrix} 617  \\ 1437 \\ 1  \end{bmatrix}
+\end{align*}
 
 \clearpage
 \section{Correct perspective of reflection painting}
