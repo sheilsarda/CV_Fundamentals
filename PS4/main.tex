@@ -116,14 +116,28 @@ Another equation in terms of $T_Z$ and $\theta$ can be obtained as follows:
 \begin{align*}
 T_Y &= y_1 \cdot {T_Z}  \\
 y_2 &= \frac{0 + T_Y}{-a \cdot sin(\theta) + T_Z} \\
-T_Z \cdot (y_2 - 1) &= a \cdot cos(\theta) + a \cdot sin(\theta) \cdot y_2 \\
-T_Z &= \frac{a \cdot cos(\theta) + a \cdot sin(\theta) \cdot y_2}{y_2 - 1} \\
+T_Z \cdot (y_2 - y_1) &= a \cdot sin(\theta) \cdot y_2 \\
+T_Z &= \frac{a \cdot sin(\theta) \cdot y_2}{y_2 - y_1} \\
 \end{align*}
 
 Solving for $\theta$:
 \begin{align*}
-T_Z &= \frac{a \cdot cos(\theta) + a \cdot sin(\theta) \cdot y_2}{y_2 - 1} \\
-T_Z &= \frac{a \cdot cos(\theta) + a \cdot sin(\theta) \cdot x_2}{x_2 - x_1} \\
+\frac{a \cdot sin(\theta) \cdot y_2}{y_2 - y_1}
+&= \frac{a \cdot cos(\theta) + a \cdot sin(\theta) \cdot x_2}{x_2 - x_1} \\
+cos(\theta) &= -x_2 \cdot y_1 + x_1 \cdot y_2 \\
+sin(\theta) &= y_1 - y_2  \\ \\
+\implies \theta &= arctan2 \left( 
+    \frac{-x_2 \cdot y_1 + x_1 \cdot y_2}{y_1 - y_2}
+    \right) \\
+\end{align*}
+
+Using this to solve for the other unknowns:
+\begin{align*}
+    T_Z &= \frac{a \cdot sin(\theta) \cdot y_2}{y_2 - y_1} \\
+    T_X &= x_1 \cdot {T_Z}  
+        &= \frac{x_1 \cdot a \cdot sin(\theta) \cdot y_2}{y_2 - y_1} \\
+    T_Y &= y_1 \cdot {T_Z}  
+        &= \frac{y_1 \cdot a \cdot sin(\theta) \cdot y_2}{y_2 - y_1}\\
 \end{align*}
 
 \subsection{Conditions on camera position to obtain unique or finite number 
@@ -163,6 +177,39 @@ $R_2$:
     \begin{bmatrix} 1 & 0 & 0 \\ \\ 
                     0 & \frac{1}{2} & -\frac{\sqrt{3}}{2}\\ \\ 
                     0 & \frac{\sqrt{3}}{2} & \frac{1}{2} \end{bmatrix} 
+\end{align*}
+
+
+\begin{align*}
+    H'  &= {R_2}^{-1} \times H \times R_1 \\ \\
+        &=
+        \begin{bmatrix} \frac{-1}{2}  & \frac{1}{2} & \frac{\sqrt{3}}{2} \\ 
+            0   & 1 & 0 \\ 
+            -\frac{\sqrt{3}}{2}  & 2 & \frac{-1}{2} \end{bmatrix} 
+\end{align*}
+
+We know $H'$ is a composition of a rotation about the $Y$ axis, followed by a 
+translation. Thus, we can also represent it as:
+
+\begin{align*}
+    H'  &=
+        \begin{bmatrix} cos(\theta)  & 0 & sin(\theta) \\ \\
+            0  & 1 & 0 \\  \\
+            -sin(\theta)   & 0 & cos(\theta) 
+        \end{bmatrix} +
+        \begin{bmatrix} 0  & \frac{T_X}{2} & 0 \\ \\
+            0  & \frac{T_Y}{2} & 0 \\ \\
+            0  & \frac{T_Z}{2} & 0 
+        \end{bmatrix} 
+\end{align*}
+
+Equating the two version of $H'$, we find:
+\begin{align*}
+    \begin{bmatrix} \frac{T_X}{2} & \frac{T_Y}{2} & \frac{T_Z}{2} 
+    \end{bmatrix}  &= 
+    \begin{bmatrix} 1 & 0 & 4 
+    \end{bmatrix} \\  \\
+    \theta &= \frac{2 \cdot \pi }{3}
 \end{align*}
 
 We also know that the rotation matrix to go from Camera 1 to Camera 2 in Camera
