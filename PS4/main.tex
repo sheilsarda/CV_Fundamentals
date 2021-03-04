@@ -1,6 +1,7 @@
 \documentclass[12pt, oneside]{article} 
 % \documentclass{article} 
-\usepackage{amsmath, amsthm, amssymb, calrsfs, wasysym, verbatim, bbm, color, graphics, geometry}
+\usepackage{amsmath, amsthm, amssymb, calrsfs, wasysym, verbatim, bbm, 
+                color, graphics, geometry}
 \usepackage{fancyvrb} % for "\Verb" macro
 \usepackage[toc,page]{appendix}
 \usepackage[pdftex]{graphicx}
@@ -43,7 +44,8 @@
     identifierstyle=\color{black},%
     stringstyle=\color{mylilas},
     commentstyle=\color{mygreen},%
-    showstringspaces=false,%without this there will be a symbol in the places where there is a space
+    showstringspaces=false,%without this there will be a 
+    % symbol in the places where there is a space
     numbers=left,%
     numberstyle={\tiny \color{black}},% size of the numbers
     numbersep=9pt, % this defines how far the numbers are from the text
@@ -82,9 +84,36 @@ $[T_x, T_y, T_z]$}
 \subsection{Conditions on camera position to obtain unique or finite number 
 of solutions}
 
-
+\clearpage
 \section{Decompose $H$ into rotation $R$ and translation $T$}
 
+Given:
+
+\begin{align*}
+    g_1 &=  
+    \begin{bmatrix} 0 \\ \\ \frac{1}{2} \\ \\ \frac{\sqrt{3}}{2} \end{bmatrix}
+\end{align*}
+    
+% - use ground plane as intermediate between camera 1 and 2
+% - P2 = H*P1
+% - P2' is projection of P2 on the ground plane
+%     - Camera 2 being projected onto the gravity vector (normal
+%     to the ground plane)
+%     - P2 = R2 * P2'
+% - R2 * P2' = H * P1
+% - R2 * P2' = H * (R1 * P1')
+%     - where P1' is analogous to P2'
+% - P2' = R2^(-1) * H * (R1 * P1')
+% - P2' = H' * P1'
+%     - where H' is analogous to H in that it maps camera 2 to 1
+%     - H' = R2^(-1)  * H * R1
+% - R1 * [0; 1; 0] = g1
+% - R1 = [1 0 0; 0 sqrt(3)/2 -0.5; 0 0.5 sqrt(3)/2]
+% - R2 * [0; 1; 0] = g2
+% - R2 = [1 0 0; 0 0.5 -sqrt(3)/2; 0 sqrt(3)/2 0.5]
+% - H' = R' + (T'*N'^(Transpose) / h)
+% - R might equal R', because T equals T' (same translation)
+% - Y-axis of both cameras are out of the page
 
 \end{document}
 
