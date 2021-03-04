@@ -72,6 +72,21 @@
 \subsection{Use solution for orthogonal Procrustes problem to obtain rotation 
 matrix}
 
+Centroid of first set of four points: $(1.25, 1.50)$ and of the 
+second set of four points: $(1.80, 1.11)$.
+
+\begin{align*}
+    A    &= 
+    \begin{bmatrix} -1.25 & -0.25 & -0.25 & 1.75\\ \\ 
+                    -0.50 & -1.50 & -0.50 & 2.50
+    \end{bmatrix} \\ \\
+    B    &= 
+    \begin{bmatrix} -0.65 & -1.52 & -0.53 & 2.70\\ \\ 
+                    -1.18 &  0.07 &  0.19 & -1.43
+    \end{bmatrix} 
+\end{align*}
+
+
 \subsection{Find solution that solves directly for the rotation angle $\theta$
 and translation $[T_x, T_Y]$}
 
@@ -142,6 +157,7 @@ Using this to solve for the other unknowns:
 
 \subsection{Conditions on camera position to obtain unique or finite number 
 of solutions}
+$y_1 \neq y_2 \implies$ the length of the rod cannot be zero.
 
 \clearpage
 \section{Decompose $H$ into rotation $R$ and translation $T$}
@@ -197,15 +213,15 @@ translation. Thus, we can also represent it as:
             0  & 1 & 0 \\  \\
             -sin(\theta)   & 0 & cos(\theta) 
         \end{bmatrix} +
-        \begin{bmatrix} 0  & \frac{T_X}{2} & 0 \\ \\
-            0  & \frac{T_Y}{2} & 0 \\ \\
-            0  & \frac{T_Z}{2} & 0 
+        \begin{bmatrix} 0  & \frac{T'_X}{2} & 0 \\ \\
+            0  & \frac{T'_Y}{2} & 0 \\ \\
+            0  & \frac{T'_Z}{2} & 0 
         \end{bmatrix} 
 \end{align*}
 
 Equating the two version of $H'$, we find:
 \begin{align*}
-    \begin{bmatrix} \frac{T_X}{2} & \frac{T_Y}{2} & \frac{T_Z}{2} 
+    \begin{bmatrix} \frac{T'_X}{2} & \frac{T'_Y}{2} & \frac{T'_Z}{2} 
     \end{bmatrix}  &= 
     \begin{bmatrix} 1 & 0 & 4 
     \end{bmatrix} \\  \\
@@ -213,13 +229,13 @@ Equating the two version of $H'$, we find:
 \end{align*}
 
 We also know that the rotation matrix to go from Camera 1 to Camera 2 in Camera
-1 coordinates $R_Y$ is a rotation about the $Y$ axis by $\pi$ radians. Thus:
+1 coordinates $R_Y$ is a rotation about the $Y$ axis by $\theta$ radians. Thus:
 
 \begin{align*}
     & R_Y =  
-    \begin{bmatrix} -1  & 0 & 0 \\ \\ 
-                    0   & 1 & 0 \\ \\ 
-                    0   & 0 & -1 \end{bmatrix} 
+    \begin{bmatrix} \frac{-1}{2}  &  0 & \frac{\sqrt{3}}{2}\\ \\
+         0   & 1 & 0 \\ \\
+         \frac{-\sqrt{3}}{2}  &  0 & \frac{-1}{2}\end{bmatrix} 
 \end{align*}
 
 Combining the above information, we can create $ \prescript{1}{}{\mathbf{R}_2}:$
@@ -227,16 +243,26 @@ Combining the above information, we can create $ \prescript{1}{}{\mathbf{R}_2}:$
 \begin{align*}
     & \prescript{1}{}{\mathbf{R}_2} 
     =  R_1 \times R_Y \times {R_2}^{-1}
-    = \begin{bmatrix} -1  & 0 & 0 \\ \\ 
-                    0   & 0 & 1 \\ \\ 
-                    0   & 1 & 0 \end{bmatrix} 
+    = \begin{bmatrix} -0.500  & -0.750 & 0.433 \\ \\ 
+                    0.433   & 0.217 & 0.875 \\ \\ 
+                    -0.750   & 0.625 & 0.217 \end{bmatrix} 
 \end{align*}
 
-We have verified the above rotation matrix by computing 
-$ \prescript{1}{}{\mathbf{R}_2} \times g_1$, and ensuring that it does indeed
-equal $g_2$.
-
 Now we use the above information to extract the translation vector from $H$.
+\begin{align*}
+    T   &= R_1 \times T' \\ \\
+        &=  \begin{bmatrix} 1 & 0 & 0 \\ \\ 
+            0 & \frac{\sqrt{3}}{2} & -\frac{1}{2}\\ \\ 
+            0 & \frac{1}{2} & \frac{\sqrt{3}}{2} \end{bmatrix}  \times
+            \begin{bmatrix} 1  \\ \\ 
+                0 \\ \\ 
+                4 \end{bmatrix}  \\ \\
+        &=  \begin{bmatrix} 1.000  \\ \\ 
+                -2.000 \\ \\ 
+                3.464 \end{bmatrix}  \\ \\
+\end{align*}
+
+Thus, $H$ can be decomposed into  $ \prescript{1}{}{\mathbf{R}_2}$ and $T$.
 
 % - use ground plane as intermediate between camera 1 and 2
 % - P2 = H*P1
