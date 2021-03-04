@@ -7,6 +7,7 @@
 \usepackage[pdftex]{graphicx}
 \usepackage{float}
 \usepackage{hyperref}
+\usepackage{mathtools}
 \hypersetup{
     colorlinks=true,
     linkcolor=blue,
@@ -78,8 +79,52 @@ and translation $[T_x, T_Y]$}
 
 \subsection{Write projection equations}
 
+Given:
+\begin{align*}
+    \lambda \cdot
+    \begin{bmatrix} x \\ \\ y \\ \\ 1 \end{bmatrix}  
+    &= 
+    \begin{bmatrix} cos(\theta) & 0 & sin(\theta) \\ \\ 
+                    0 & 1 & 0\\ \\ 
+                    -sin(\theta) & 0 & cos(\theta)
+    \end{bmatrix}  \cdot 
+    \begin{bmatrix} X \\ \\ Y \\ \\ Z \end{bmatrix}  +
+    \begin{bmatrix} T_X \\ \\ T_Y \\ \\ T_Z \end{bmatrix}  
+\end{align*}
+
+Using the above, we can generate a system of 4 equations with 4 unknowns as 
+follows:
+\begin{align*}
+    x_2 &= \frac{a \cdot cos(\theta) + T_X}{-a \cdot sin(\theta) + T_Z} \\
+    y_2 &= \frac{0 + T_Y}{-a \cdot sin(\theta) + T_Z} \\
+    x_1 &= \frac{T_X}{T_Z}  \\
+    y_1 &= \frac{T_Y}{T_Z} 
+\end{align*}
+
 \subsection{Solve equations for yaw angle $\theta$ and translations 
 $[T_x, T_y, T_z]$}
+
+Solving the above system of equations:
+\begin{align*}
+T_X &= x_1 \cdot {T_Z}  \\
+x_2 &= \frac{a \cdot cos(\theta) + x_1 \cdot {T_Z}}{-a \cdot sin(\theta) + T_Z} \\
+T_Z \cdot (x_2 - x_1) &= a \cdot cos(\theta) + a \cdot sin(\theta) \cdot x_2 \\
+T_Z &= \frac{a \cdot cos(\theta) + a \cdot sin(\theta) \cdot x_2}{x_2 - x_1} \\
+\end{align*}
+
+Another equation in terms of $T_Z$ and $\theta$ can be obtained as follows:
+\begin{align*}
+T_Y &= y_1 \cdot {T_Z}  \\
+y_2 &= \frac{0 + T_Y}{-a \cdot sin(\theta) + T_Z} \\
+T_Z \cdot (y_2 - 1) &= a \cdot cos(\theta) + a \cdot sin(\theta) \cdot y_2 \\
+T_Z &= \frac{a \cdot cos(\theta) + a \cdot sin(\theta) \cdot y_2}{y_2 - 1} \\
+\end{align*}
+
+Solving for $\theta$:
+\begin{align*}
+T_Z &= \frac{a \cdot cos(\theta) + a \cdot sin(\theta) \cdot y_2}{y_2 - 1} \\
+T_Z &= \frac{a \cdot cos(\theta) + a \cdot sin(\theta) \cdot x_2}{x_2 - x_1} \\
+\end{align*}
 
 \subsection{Conditions on camera position to obtain unique or finite number 
 of solutions}
@@ -90,10 +135,62 @@ of solutions}
 Given:
 
 \begin{align*}
-    g_1 &=  
-    \begin{bmatrix} 0 \\ \\ \frac{1}{2} \\ \\ \frac{\sqrt{3}}{2} \end{bmatrix}
+    & g_1 =  
+    \begin{bmatrix} 0 \\ \\ \frac{\sqrt{3}}{2} \\ \\ \frac{1}{2} \end{bmatrix} 
+    & g_2 =  
+    \begin{bmatrix} 0 \\ \\ \frac{1}{2} \\ \\ \frac{\sqrt{3}}{2} \end{bmatrix} 
 \end{align*}
-    
+
+\begin{align*}
+    H =  
+    \begin{bmatrix} \frac{-4}{8} & 0 & 1 \\ \\ 
+                    \frac{6}{8} & \frac{\sqrt{3} - 12}{8} 
+                    & \frac{5 -4\sqrt{3}}{8}    \\ \\ 
+                    \frac{-2 \sqrt{3}}{8} & 
+                    \frac{7 + 4\sqrt{3}}{8} & \frac{\sqrt{3} + 4}{8} 
+                \end{bmatrix} 
+\end{align*}
+
+Also, from the provided picture we can obtain the rotation matrices $R_1$ and 
+$R_2$:
+
+\begin{align*}
+    & R_1 =  
+    \begin{bmatrix} 1 & 0 & 0 \\ \\ 
+                    0 & \frac{\sqrt{3}}{2} & -\frac{1}{2}\\ \\ 
+                    0 & \frac{1}{2} & \frac{\sqrt{3}}{2} \end{bmatrix} 
+    & R_2 =  
+    \begin{bmatrix} 1 & 0 & 0 \\ \\ 
+                    0 & \frac{1}{2} & -\frac{\sqrt{3}}{2}\\ \\ 
+                    0 & \frac{\sqrt{3}}{2} & \frac{1}{2} \end{bmatrix} 
+\end{align*}
+
+We also know that the rotation matrix to go from Camera 1 to Camera 2 in Camera
+1 coordinates $R_Y$ is a rotation about the $Y$ axis by $\pi$ radians. Thus:
+
+\begin{align*}
+    & R_Y =  
+    \begin{bmatrix} -1  & 0 & 0 \\ \\ 
+                    0   & 1 & 0 \\ \\ 
+                    0   & 0 & -1 \end{bmatrix} 
+\end{align*}
+
+Combining the above information, we can create $ \prescript{1}{}{\mathbf{R}_2}:$
+
+\begin{align*}
+    & \prescript{1}{}{\mathbf{R}_2} 
+    =  R_1 \times R_Y \times {R_2}^{-1}
+    = \begin{bmatrix} -1  & 0 & 0 \\ \\ 
+                    0   & 0 & 1 \\ \\ 
+                    0   & 1 & 0 \end{bmatrix} 
+\end{align*}
+
+We have verified the above rotation matrix by computing 
+$ \prescript{1}{}{\mathbf{R}_2} \times g_1$, and ensuring that it does indeed
+equal $g_2$.
+
+Now we use the above information to extract the translation vector from $H$.
+
 % - use ground plane as intermediate between camera 1 and 2
 % - P2 = H*P1
 % - P2' is projection of P2 on the ground plane
