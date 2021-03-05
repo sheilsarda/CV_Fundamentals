@@ -82,13 +82,54 @@ second set of four points: $(1.80, 1.11)$.
     \end{bmatrix} \\ \\
     B    &= 
     \begin{bmatrix} -0.65 & -1.52 & -0.53 & 2.70\\ \\ 
-                    -1.18 &  0.07 &  0.19 & -1.43
+                    1.18 &  0.07 &  0.19 & -1.43
     \end{bmatrix} 
 \end{align*}
 
+Taking the SVD of $A \times B^{T}$
+
+\begin{align*}
+    [U, S, V^T] &= SVD(A \times B^{T}) \\ \\
+    \implies R &= V \times
+    \begin{bmatrix} 1 & 0 \\ \\ 
+        0 & det(V \times U^T) 
+    \end{bmatrix}  \times U^T \\ \\
+    &= \begin{bmatrix} 0.1234 & 0.9924 \\ \\ 
+        -0.9924 & 0.1234
+    \end{bmatrix}  
+\end{align*}
 
 \subsection{Find solution that solves directly for the rotation angle $\theta$
 and translation $[T_x, T_Y]$}
+
+\begin{align*}
+    \sum_{}{} &({x_i}' - x_i \cdot cos(\theta) + y_i \cdot sin(\theta) -t_x)^2 \\
+            +&({y_i}' - x_i \cdot sin(\theta) - y_i \cdot cos(\theta) -t_y)^2
+\end{align*}
+
+Taking partial derivatives with respect to $t_x$:
+\begin{align*}
+    \frac{\partial }{\partial t_x} &=  -2 \cdot (-t_x - x_i \cdot cos(\theta) 
+    + y_i \cdot sin(\theta) + x') = 0 \\ \\
+    \implies t_x &= -\bar{x_i} \cdot cos(\theta) + 
+                    \bar{y_i} \cdot sin(\theta) + \bar{x'}
+\end{align*}
+
+Taking partial derivatives with respect to $t_y$:
+\begin{align*}
+    \frac{\partial }{\partial t_y} &=  -2 \cdot (-t_y - x_i \cdot sin(\theta) 
+    + y_i \cdot cos(\theta) + y') = 0 \\ \\
+    \implies t_y &= -\bar{x_i} \cdot sin(\theta) -
+                    \bar{y_i} \cdot cos(\theta) + \bar{y'}
+\end{align*}
+
+Next steps: 
+\begin{enumerate}
+    \item Combine the equations for $t_x$ and $t_y$ using the original equation
+    \item Take the derivative with respect to $\theta$ and set it equal to 0
+    \item Solve for $t_x$ and $t_y$ by substituting $\theta$
+\end{enumerate}
+
 
 \section{Phone held vertically}
 
@@ -142,7 +183,7 @@ Solving for $\theta$:
 cos(\theta) &= -x_2 \cdot y_1 + x_1 \cdot y_2 \\
 sin(\theta) &= y_1 - y_2  \\ \\
 \implies \theta &= arctan2 \left( 
-    \frac{-x_2 \cdot y_1 + x_1 \cdot y_2}{y_1 - y_2}
+    \frac{y_1 - y_2}{-x_2 \cdot y_1 + x_1 \cdot y_2}
     \right) \\
 \end{align*}
 
