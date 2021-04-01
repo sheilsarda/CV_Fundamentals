@@ -13,4 +13,9 @@
 
 *.fls
 *.fdb_latexmk
-__latexindent_temp.text 
+__latexindent_temp.text
+
+.ipynb_checkpoints/*
+scripts/.ipynb_checkpoints/*
+
+*/scripts/.ipynb_checkpoints/
