@@ -19,3 +19,5 @@ __latexindent_temp.text
 scripts/.ipynb_checkpoints/*
 
 */scripts/.ipynb_checkpoints/
+.vscode/*
+
