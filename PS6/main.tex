@@ -8,6 +8,10 @@
 \usepackage{float}
 \usepackage{hyperref}
 \usepackage{mathtools}
+
+
+\usepackage{subcaption}
+
 \hypersetup{
     colorlinks=true,
     linkcolor=blue,
@@ -67,247 +71,32 @@
     \end{flushleft}
 \end{titlepage}
 
-\section{Mapping 2D points}
-
 \section{Convolution of image with a Gaussian}
 
-
-
-\subsection{Use solution for orthogonal Procrustes problem to obtain rotation 
-matrix}
-
-Centroid of first set of four points: $(1.25, 1.50)$ and of the 
-second set of four points: $(1.80, 1.11)$.
-
-\begin{align*}
-    A    &= 
-    \begin{bmatrix} -1.25 & -0.25 & -0.25 & 1.75\\ \\ 
-                    -0.50 & -1.50 & -0.50 & 2.50
-    \end{bmatrix} \\ \\
-    B    &= 
-    \begin{bmatrix} -0.65 & -1.52 & -0.53 & 2.70\\ \\ 
-                    1.18 &  0.07 &  0.19 & -1.43
-    \end{bmatrix} 
-\end{align*}
-
-Taking the SVD of $A \times B^{T}$
-
-\begin{align*}
-    [U, S, V^T] &= SVD(A \times B^{T}) \\ \\
-    \implies R &= V \times
-    \begin{bmatrix} 1 & 0 \\ \\ 
-        0 & det(V \times U^T) 
-    \end{bmatrix}  \times U^T \\ \\
-    &= \begin{bmatrix} 0.1234 & 0.9924 \\ \\ 
-        -0.9924 & 0.1234
-    \end{bmatrix}  
-\end{align*}
-
-\subsection{Find solution that solves directly for the rotation angle $\theta$
-and translation $[T_x, T_Y]$}
-
-\begin{align*}
-    \sum_{}{} &({x_i}' - x_i \cdot cos(\theta) + y_i \cdot sin(\theta) -t_x)^2 \\
-            +&({y_i}' - x_i \cdot sin(\theta) - y_i \cdot cos(\theta) -t_y)^2
-\end{align*}
-
-Taking partial derivatives with respect to $t_x$:
-\begin{align*}
-    \frac{\partial }{\partial t_x} &=  -2 \cdot (-t_x - x_i \cdot cos(\theta) 
-    + y_i \cdot sin(\theta) + x') = 0 \\ \\
-    \implies t_x &= -\bar{x_i} \cdot cos(\theta) + 
-                    \bar{y_i} \cdot sin(\theta) + \bar{x'}
-\end{align*}
-
-Taking partial derivatives with respect to $t_y$:
-\begin{align*}
-    \frac{\partial }{\partial t_y} &=  -2 \cdot (-t_y - x_i \cdot sin(\theta) 
-    + y_i \cdot cos(\theta) + y') = 0 \\ \\
-    \implies t_y &= -\bar{x_i} \cdot sin(\theta) -
-                    \bar{y_i} \cdot cos(\theta) + \bar{y'}
-\end{align*}
-
-Next steps: 
-\begin{enumerate}
-    \item Combine the equations for $t_x$ and $t_y$ using the original equation
-    \item Take the derivative with respect to $\theta$ and set it equal to 0
-    \item Solve for $t_x$ and $t_y$ by substituting $\theta$
-\end{enumerate}
-
-
-\section{Phone held vertically}
-
-\subsection{Write projection equations}
-
-Given:
-\begin{align*}
-    \lambda \cdot
-    \begin{bmatrix} x \\ \\ y \\ \\ 1 \end{bmatrix}  
-    &= 
-    \begin{bmatrix} cos(\theta) & 0 & sin(\theta) \\ \\ 
-                    0 & 1 & 0\\ \\ 
-                    -sin(\theta) & 0 & cos(\theta)
-    \end{bmatrix}  \cdot 
-    \begin{bmatrix} X \\ \\ Y \\ \\ Z \end{bmatrix}  +
-    \begin{bmatrix} T_X \\ \\ T_Y \\ \\ T_Z \end{bmatrix}  
-\end{align*}
-
-Using the above, we can generate a system of 4 equations with 4 unknowns as 
-follows:
-\begin{align*}
-    x_2 &= \frac{a \cdot cos(\theta) + T_X}{-a \cdot sin(\theta) + T_Z} \\
-    y_2 &= \frac{0 + T_Y}{-a \cdot sin(\theta) + T_Z} \\
-    x_1 &= \frac{T_X}{T_Z}  \\
-    y_1 &= \frac{T_Y}{T_Z} 
-\end{align*}
-
-\subsection{Solve equations for yaw angle $\theta$ and translations 
-$[T_x, T_y, T_z]$}
-
-Solving the above system of equations:
-\begin{align*}
-T_X &= x_1 \cdot {T_Z}  \\
-x_2 &= \frac{a \cdot cos(\theta) + x_1 \cdot {T_Z}}{-a \cdot sin(\theta) + T_Z} \\
-T_Z \cdot (x_2 - x_1) &= a \cdot cos(\theta) + a \cdot sin(\theta) \cdot x_2 \\
-T_Z &= \frac{a \cdot cos(\theta) + a \cdot sin(\theta) \cdot x_2}{x_2 - x_1} \\
-\end{align*}
-
-Another equation in terms of $T_Z$ and $\theta$ can be obtained as follows:
-\begin{align*}
-T_Y &= y_1 \cdot {T_Z}  \\
-y_2 &= \frac{0 + T_Y}{-a \cdot sin(\theta) + T_Z} \\
-T_Z \cdot (y_2 - y_1) &= a \cdot sin(\theta) \cdot y_2 \\
-T_Z &= \frac{a \cdot sin(\theta) \cdot y_2}{y_2 - y_1} \\
-\end{align*}
-
-Solving for $\theta$:
-\begin{align*}
-\frac{a \cdot sin(\theta) \cdot y_2}{y_2 - y_1}
-&= \frac{a \cdot cos(\theta) + a \cdot sin(\theta) \cdot x_2}{x_2 - x_1} \\
-cos(\theta) &= -x_2 \cdot y_1 + x_1 \cdot y_2 \\
-sin(\theta) &= y_1 - y_2  \\ \\
-\implies \theta &= arctan2 \left( 
-    \frac{y_1 - y_2}{-x_2 \cdot y_1 + x_1 \cdot y_2}
-    \right) \\
-\end{align*}
-
-Using this to solve for the other unknowns:
-\begin{align*}
-    T_Z &= \frac{a \cdot sin(\theta) \cdot y_2}{y_2 - y_1} \\
-    T_X &= x_1 \cdot {T_Z}  
-        &= \frac{x_1 \cdot a \cdot sin(\theta) \cdot y_2}{y_2 - y_1} \\
-    T_Y &= y_1 \cdot {T_Z}  
-        &= \frac{y_1 \cdot a \cdot sin(\theta) \cdot y_2}{y_2 - y_1}\\
-\end{align*}
-
-\subsection{Conditions on camera position to obtain unique or finite number 
-of solutions}
-$y_1 \neq y_2 \implies$ the length of the rod cannot be zero.
-
-\clearpage
-\section{Decompose $H$ into rotation $R$ and translation $T$}
-
-Given:
-
-\begin{align*}
-    & g_1 =  
-    \begin{bmatrix} 0 \\ \\ \frac{\sqrt{3}}{2} \\ \\ \frac{1}{2} \end{bmatrix} 
-    & g_2 =  
-    \begin{bmatrix} 0 \\ \\ \frac{1}{2} \\ \\ \frac{\sqrt{3}}{2} \end{bmatrix} 
-\end{align*}
-
-\begin{align*}
-    H =  
-    \begin{bmatrix} \frac{-4}{8} & 0 & 1 \\ \\ 
-                    \frac{6}{8} & \frac{\sqrt{3} - 12}{8} 
-                    & \frac{5 -4\sqrt{3}}{8}    \\ \\ 
-                    \frac{-2 \sqrt{3}}{8} & 
-                    \frac{7 + 4\sqrt{3}}{8} & \frac{\sqrt{3} + 4}{8} 
-                \end{bmatrix} 
-\end{align*}
-
-Also, from the provided picture we can obtain the rotation matrices $R_1$ and 
-$R_2$:
-
-\begin{align*}
-    & R_1 =  
-    \begin{bmatrix} 1 & 0 & 0 \\ \\ 
-                    0 & \frac{\sqrt{3}}{2} & -\frac{1}{2}\\ \\ 
-                    0 & \frac{1}{2} & \frac{\sqrt{3}}{2} \end{bmatrix} 
-    & R_2 =  
-    \begin{bmatrix} 1 & 0 & 0 \\ \\ 
-                    0 & \frac{1}{2} & -\frac{\sqrt{3}}{2}\\ \\ 
-                    0 & \frac{\sqrt{3}}{2} & \frac{1}{2} \end{bmatrix} 
-\end{align*}
-
-
-\begin{align*}
-    H'  &= {R_2}^{-1} \times H \times R_1 \\ \\
-        &=
-        \begin{bmatrix} \frac{-1}{2}  & \frac{1}{2} & \frac{\sqrt{3}}{2} \\ 
-            0   & 1 & 0 \\ 
-            -\frac{\sqrt{3}}{2}  & 2 & \frac{-1}{2} \end{bmatrix} 
-\end{align*}
-
-We know $H'$ is a composition of a rotation about the $Y$ axis, followed by a 
-translation. Thus, we can also represent it as:
-
-\begin{align*}
-    H'  &=
-        \begin{bmatrix} cos(\theta)  & 0 & sin(\theta) \\ \\
-            0  & 1 & 0 \\  \\
-            -sin(\theta)   & 0 & cos(\theta) 
-        \end{bmatrix} +
-        \begin{bmatrix} 0  & \frac{T'_X}{2} & 0 \\ \\
-            0  & \frac{T'_Y}{2} & 0 \\ \\
-            0  & \frac{T'_Z}{2} & 0 
-        \end{bmatrix} 
-\end{align*}
-
-Equating the two version of $H'$, we find:
-\begin{align*}
-    \begin{bmatrix} \frac{T'_X}{2} & \frac{T'_Y}{2} & \frac{T'_Z}{2} 
-    \end{bmatrix}  &= 
-    \begin{bmatrix} 1 & 0 & 4 
-    \end{bmatrix} \\  \\
-    \theta &= \frac{2 \cdot \pi }{3}
-\end{align*}
-
-We also know that the rotation matrix to go from Camera 1 to Camera 2 in Camera
-1 coordinates $R_Y$ is a rotation about the $Y$ axis by $\theta$ radians. Thus:
-
-\begin{align*}
-    & R_Y =  
-    \begin{bmatrix} \frac{-1}{2}  &  0 & \frac{\sqrt{3}}{2}\\ \\
-         0   & 1 & 0 \\ \\
-         \frac{-\sqrt{3}}{2}  &  0 & \frac{-1}{2}\end{bmatrix} 
-\end{align*}
-
-Combining the above information, we can create $ \prescript{1}{}{\mathbf{R}_2}:$
-
-\begin{align*}
-    & \prescript{1}{}{\mathbf{R}_2} 
-    =  R_1 \times R_Y \times {R_2}^{-1}
-    = \begin{bmatrix} -0.500  & -0.750 & 0.433 \\ \\ 
-                    0.433   & 0.217 & 0.875 \\ \\ 
-                    -0.750   & 0.625 & 0.217 \end{bmatrix} 
-\end{align*}
-
-Now we use the above information to extract the translation vector from $H$.
-\begin{align*}
-    T   &= R_1 \times T' \\ \\
-        &=  \begin{bmatrix} 1 & 0 & 0 \\ \\ 
-            0 & \frac{\sqrt{3}}{2} & -\frac{1}{2}\\ \\ 
-            0 & \frac{1}{2} & \frac{\sqrt{3}}{2} \end{bmatrix}  \times
-            \begin{bmatrix} 1  \\ \\ 
-                0 \\ \\ 
-                4 \end{bmatrix}  \\ \\
-        &=  \begin{bmatrix} 1.000  \\ \\ 
-                -2.000 \\ \\ 
-                3.464 \end{bmatrix}  \\ \\
-\end{align*}
-
-Thus, $H$ can be decomposed into  $ \prescript{1}{}{\mathbf{R}_2}$ and $T$.
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}[b]{0.3\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{imgs/q1_original.png}
+        \caption{Original Image}
+        \label{fig:y equals x}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.3\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{imgs/q1_plot1.png}
+        \caption{$\sigma = 1$}
+        \label{fig:three sin x}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.3\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{imgs/q1_plot2.png}
+        \caption{$\sigma = 0.1$}
+        \label{fig:five over x}
+    \end{subfigure}
+       \caption{Three simple graphs}
+       \label{fig:three graphs}
+\end{figure}
 
 \end{document}
-
