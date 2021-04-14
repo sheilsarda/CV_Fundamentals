@@ -144,12 +144,12 @@ a Gaussian kernel with standard deviation $\sigma_1 \cdot \sigma_2$.
     \frac{-t e^{\frac{-(t ^ 2)}{2 \sigma ^ 2}} }{ 
     \sqrt{2 \pi} \sigma ^ 3}
     \cdot
-    \frac{-H}{2} dx  +
+    \frac{-H}{2} \cdot dx  +
     \int_{0}^{\infty} 
     \frac{-t e^{\frac{-(t ^ 2)}{2 \sigma ^ 2}} }{ 
     \sqrt{2 \pi} \sigma ^ 3}
     \cdot
-    \frac{H}{2} dx  
+    \frac{H}{2} \cdot dx  
 \end{align*}
 
 \begin{figure}[H]
@@ -163,6 +163,29 @@ a Gaussian kernel with standard deviation $\sigma_1 \cdot \sigma_2$.
 
 \section{Box Function}
 
+\begin{align*}
+    g(t) &= \frac{1}{\sigma \sqrt{2 \pi}}e^{-\frac{t^2}{2 \sigma ^ 2}}  \\\\
+    &\implies g'(t) =  \frac{-t e^{\frac{-(t ^ 2)}{2 \sigma ^ 2}} }{ 
+    \sqrt{2 \pi} \sigma ^ 3} \\\\
+    (g' * h)(t) &= 
+    \int_{-\infty}^{\frac{-1}{2}} 
+    \frac{-t e^{\frac{-(t ^ 2)}{2 \sigma ^ 2}} }{ 
+    \sqrt{2 \pi} \sigma ^ 3}
+    \cdot
+    0 \cdot dx  +
+    \int_{\frac{-1}{2}}^{\frac{1}{2}} 
+    \frac{-t e^{\frac{-(t ^ 2)}{2 \sigma ^ 2}} }{ 
+    \sqrt{2 \pi} \sigma ^ 3} \cdot dx  +
+    \int_{\frac{1}{2}}^{\infty} 
+    \frac{-t e^{\frac{-(t ^ 2)}{2 \sigma ^ 2}} }{ 
+    \sqrt{2 \pi} \sigma ^ 3}
+    \cdot
+    0 \cdot dx  \\\\
+    &= 
+    \int_{\frac{-1}{2}}^{\frac{1}{2}} 
+    \frac{-t e^{\frac{-(t ^ 2)}{2 \sigma ^ 2}} }{ 
+    \sqrt{2 \pi} \sigma ^ 3} \cdot dx  
+\end{align*}
 
 \begin{figure}[H]
     \centering
