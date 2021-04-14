@@ -116,8 +116,22 @@ deviations:
 \begin{align*}
     g_1(t) &= \frac{1}{\sigma_1 \sqrt{2 \pi}}e^{-\frac{t^2}{2 \sigma_1 ^ 2}}  \\
     g_2(t) &= \frac{1}{\sigma_2 \sqrt{2 \pi}}e^{-\frac{t^2}{2 \sigma_2 ^ 2}}  \\\\
-    (g_1 * g_t)(t) &= \int_{-\infty}^{\infty} 2
+    (g_1 * g_t)(t) &= 
+    \int_{-\infty}^{\infty} 
+    \frac{1}{\sigma_1 \sqrt{2 \pi}}e^{-\frac{t^2}{2 \sigma_1 ^ 2}} 
+    \cdot
+    \frac{1}{\sigma_1 \sqrt{2 \pi}}e^{-\frac{(t-x)^2}{2 \sigma_2 ^ 2}} dx  \\\\
+    &= \int_{-\infty}^{\infty} 
+    \frac{  e^{-\frac{t^2}{2 \sigma_1 ^ 2}} \cdot 
+            e^{-\frac{(t-x)^2}{2 \sigma_2 ^ 2}}}{ 
+                \sigma_1 \sigma_2 (\sqrt{2 \pi})^2}    \\\\
+    &= \frac{1}{\sigma_1 \sigma_2 \sqrt{2 \pi}}
+    e^{-\frac{t^2}{2 \sigma_1 ^ 2 \sigma_2 ^ 2 }} 
 \end{align*}
+
+The above result shows that convolving two Gaussian kernels $g_1$ and $g_2$
+with standard deviations $\sigma_1$ and $\sigma_2$ respectively results in
+a Gaussian kernel with standard deviation $\sigma_1 \cdot \sigma_2$.
 
 \section{Convolution of Step Edge with Gaussian derivative}
 
