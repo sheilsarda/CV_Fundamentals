@@ -116,7 +116,7 @@ deviations:
 \begin{align*}
     g_1(t) &= \frac{1}{\sigma_1 \sqrt{2 \pi}}e^{-\frac{t^2}{2 \sigma_1 ^ 2}}  \\
     g_2(t) &= \frac{1}{\sigma_2 \sqrt{2 \pi}}e^{-\frac{t^2}{2 \sigma_2 ^ 2}}  \\\\
-    (g_1 * g_t)(t) &= 
+    (g_1 * g_2)(t) &= 
     \int_{-\infty}^{\infty} 
     \frac{1}{\sigma_1 \sqrt{2 \pi}}e^{-\frac{t^2}{2 \sigma_1 ^ 2}} 
     \cdot
@@ -255,5 +255,21 @@ the distance between the two peaks in the frequency domain was
 proportional to the frequency of the curves.
 
 \section{Filter Design}
+
+\subsection{Convolve composition of cosine waves with Gaussian filter}
+
+\begin{align*}
+    y(t) &= cos(\omega_1 t) + cos(\omega_2 t) \\
+    g(t) &= \frac{2}{\sigma \sqrt{2 \pi}}e^{-\frac{t^2}{2 \sigma ^ 2}}  \\\\
+    (y * g)(t) &= 
+    \int_{-\infty}^{\infty} 
+    \left( cos(\omega_1 t) + cos(\omega_2 t) \right)
+    \cdot
+    \frac{2}{\sigma \sqrt{2 \pi}}e^{-\frac{(t-x)^2}{2 \sigma ^ 2}} \cdot dx  
+\end{align*}
+
+\subsection{Compute standard deviation for convolution output}
+
+$$ s(t) = \frac{1}{2}\cdot (cos(\omega_1 t) + a \cdot cos(\omega_2 t)) $$
 
 \end{document}
