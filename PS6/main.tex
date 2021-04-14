@@ -99,9 +99,13 @@
        \label{fig:three graphs}
 \end{figure}
 
+
+
 \section{Convolution of Gaussians}
 
 \section{Convolution of Step Edge with Gaussian derivative}
+
+
 
 \section{Box Function}
 
@@ -116,7 +120,52 @@
     \caption{Functions and corresponding FFTs}
 \end{figure}
 
+\begin{table}[H]
+    \centering
+    \begin{tabular}{|c|l|}
+    \hline
+    \multicolumn{1}{|l|}{\textbf{Function}} & \textbf{FFT Plot} \\ \hline
+    1                                       & D                 \\ \hline
+    2                                       & C                 \\ \hline
+    3                                       & B                 \\ \hline
+    4                                       & E                 \\ \hline
+    5                                       & A                 \\ \hline
+    \end{tabular}
+\end{table}
+
+My reasoning  for the above matching is that in frequency domain, 
+the distance between the two peaks is proportional to the frequency of
+the curves.
+
 \section{2D Fourier Transform}
+
+
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}[b]{1\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{imgs/q6_matching.png}
+    \end{subfigure}
+    \caption{Functions and corresponding FFTs}
+\end{figure}
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{|c|l|}
+    \hline
+    \multicolumn{1}{|l|}{\textbf{Function}} & \textbf{FFT Plot} \\ \hline
+    A                                       & F                 \\ \hline
+    B                                       & G                 \\ \hline
+    C                                       & H                 \\ \hline
+    D                                       & E                 \\ \hline
+    \end{tabular}
+\end{table}
+
+My reasoning  for the above matching is that the separation of the white dots 
+in the frequency domain is proportional to the frequency of the black and white
+signals. This reasoning is similar to the 1-dimensional case where 
+the distance between the two peaks in the frequency domain was 
+proportional to the frequency of the curves.
 
 \section{Filter Design}
 
