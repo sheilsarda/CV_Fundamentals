@@ -7,7 +7,7 @@ from matplotlib import pyplot as plt
 H = 1
 sigma = 0
 
-time = np.arange(-10.5, 10.5, 0.5)
+time = np.arange(-10.1, 10.1, 0.1)
 
 h_list = [-H / 2 if t < 0 else H / 2 for t in time]
 
@@ -25,7 +25,7 @@ for i in range(10):
     
     convolved = np.convolve(h_list, gaussian_deriv)
 
-    plt.plot(convolved[30:55])
+    plt.plot(convolved[130:280])
 
 plt.title("Convolution of Step Edge with Gaussian derivative")
 plt.show()
