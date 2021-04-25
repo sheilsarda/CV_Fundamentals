@@ -114,5 +114,91 @@ We intentionally forget the normalizing factor and just use the difference of Ga
 
 \subsection{Detecting sunflowers}
 
+\subsubsection{Sunflower detection}
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}[b]{1\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{imgs/q1.3_plot1.png}
+    \end{subfigure}
+    \caption{}
+\end{figure}
+
+\subsubsection{Blob detection on custom image}
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}[b]{1\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{imgs/q1.3_plot2.png}
+    \end{subfigure}
+    \caption{}
+\end{figure}
+
+\section{Finding Waldo with Gabor Filters}
+
+\subsection{Gabor Filter in 2D}
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}[b]{0.25\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{imgs/q2.1_plot1.png}
+    \end{subfigure}
+    \caption{Original Image}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}[b]{1\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{imgs/q2.1_plot2.png}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{1\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{imgs/q2.1_plot3.png}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{1\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{imgs/q2.1_plot4.png}
+        \caption{$\sigma = 0.1$}
+    \end{subfigure}
+       \caption{Gabor 2D Plot with different parameters}
+       \label{fig:three graphs}
+\end{figure}
+
+As the spatial period increases, the dots move away from the center. The angle we are using as offset determines the orientation of the image. We also notice that the magnitude of the response is inversely proportional to the distance from the center.
+
+\subsection{Finding Waldo}
+
+\subsubsection{Creation of im\_red}
+The image is created by supressing the green and blue color channels from the RGB image. This helps convert the image to a grayscale image. The choice of suppressing the greens and blues by subtracting their average intensity might be impacted by the fact that we wish to maintain the whitespace in the image, which is represented by $\text{RGB}(255, 255, 255)$. Hence, if we eliminate the greens and blues, we will lose the white.
+
+\begin{verbatim}
+im_red = image[:,:,0] - 0.5*(image[:,:,1] + image[:,:,2]);
+im_red[im_red < np.mean(im_red[:])] = np.mean(im_red[:]);
+im_red = im_red - np.mean(im_red[:]);
+\end{verbatim}
+
+\subsubsection{Finding Waldo}
+
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}[b]{1\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{imgs/q2.2_plot.png}
+    \end{subfigure}
+    \caption{Masked Image with Waldo}
+\end{figure}
+
+Using the above masked image, we can find Waldo!
+
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}[b]{1\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{imgs/waldo_found.png}
+    \end{subfigure}
+\end{figure}
 
 \end{document}
